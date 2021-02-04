@@ -19,22 +19,6 @@ function LoginFormModal() {
           <LoginForm />
         </Modal>
       )}
-      <button
-        onClick={() => {
-          dispatch(
-            sessionActions.login({
-              credential: "Demo-lition",
-              password: "password",
-            })
-          )
-            .then((res) => history.pushState("/"))
-            .catch((res) => {
-              if (res.data && res.data.errors) setErrors(res.data.errors);
-            });
-        }}
-      >
-        Demo User
-      </button>
     </>
   );
 }

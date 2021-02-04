@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+import "./SignupForm.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -19,60 +20,83 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(res => {
-          if (res.data && res.data.errors) setErrors(res.data.errors);
-        });
+      return dispatch(
+        sessionActions.signup({ email, username, password })
+      ).catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors([
+      "Confirm Password field must be the same as the Password field",
+    ]);
   };
 
   return (
-    <>
+    <div id="signup-form">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign Up</button>
+        <div>
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Username
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Confirm Password
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit">Sign Up</button>
+          <button
+            onClick={() => {
+              dispatch(
+                sessionActions.login({
+                  credential: "Demo-lition",
+                  password: "password",
+                })
+              )
+                .then((res) => history.pushState("/"))
+                .catch((res) => {
+                  if (res.data && res.data.errors) setErrors(res.data.errors);
+                });
+            }}
+          >
+            Demo User
+          </button>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
