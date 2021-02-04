@@ -1,7 +1,7 @@
 import "./homepage.css";
 
-const Home = () => {
+const Homepage = () => {
   return <h1>hi</h1>;
 };
 
-export default Home;
+export default Homepage;
