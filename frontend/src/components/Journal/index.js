@@ -1,10 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { getEntries } from "../../store/entries";
+import { Link } from "react-router-dom";
+import { getEntries, createEntry } from "../../store/entries";
 import EntryForm from "../EntryForm";
 
 const Journal = () => {
+//   const CryptoJS = require("crypto-js");
+//   const AES = require("crypto-js/aes");
+
+//   const decryptWithAES = (ciphertext) => {
+//     const passphrase = "persephone";
+//     const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+//     const originalText = bytes.toString(CryptoJS.enc.Utf8);
+//     return originalText;
+//   };
+
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
@@ -16,7 +26,6 @@ const Journal = () => {
 
   // how do i make the entry title change to the entry text just by clicking on it
   // want to try useEffect
-
   return (
     <div>
       {user && (

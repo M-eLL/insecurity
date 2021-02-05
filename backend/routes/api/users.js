@@ -9,6 +9,7 @@ const {
   requireAuth,
   restoreUser,
 } = require("../../utils/auth");
+
 const { User, Entry, Category, Prompt } = require("../../db/models");
 
 const router = express.Router();
@@ -48,7 +49,8 @@ router.post(
 
 // finds all entries
 router.get(
-  "/:id/entries",
+  // "/:id/entries",
+  "/entries",
   restoreUser,
   asyncHandler(async (req, res) => {
     const { user } = req;
@@ -65,30 +67,32 @@ router.post(
   "/:id/entries",
   restoreUser,
   asyncHandler(async (req, res) => {
-    const { title, text, encryption_key } = req.body;
-    const entry = await Entry.Create({ title, text, encryption_key });
+    const { text, title } = req.body;
+    const entry = await Entry.create({
+      title,
+      userId: req.params.id,
+      text,
+    });
 
-    const encrytedEntry = (text) => {
-      const passphrase = "persephone";
-      console.log(encrytedEntry, entry);
-      return CryptoJS.AES.encrypt(text, passphrase).toString();
-    };
-    res.json({ entry });
+    return res.json({ entry });
   })
 );
 // router.post(
-//   "/entries",
+//   "/:id/entries",
 //   restoreUser,
 //   asyncHandler(async (req, res) => {
 //     const { title, text, encryption_key } = req.body;
-//     const entry = await Entry.Create({ title, text, encryption_key });
+//     const encryptedText = encryptedEntry(text);
+//     const entryObj = await Entry.Create({
+//       title,
+//       text: encryptedText,
+//     });
 
 //     const encrytedEntry = (text) => {
 //       const passphrase = "persephone";
-//       console.log(encrytedEntry, entry);
 //       return CryptoJS.AES.encrypt(text, passphrase).toString();
 //     };
-//     res.json({ entry });
+//     res.json({ entryObj });
 //   })
 // );
 
