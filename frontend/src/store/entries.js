@@ -25,20 +25,13 @@ export const getEntries = (userId) => async (dispatch) => {
 };
 
 export const createEntry = (entry) => async (dispatch) => {
-  const { title, text, userId } = entry;
+  const { title, text, userId, encryption_key } = entry;
   let response = await fetch(`/api/users/${userId}/entries`, {
     method: "POST",
-    body: JSON.stringify({ title, text }),
+    body: JSON.stringify({ title, text, encryption_key }),
   });
   const newEntry = response.data.entry;
   dispatch(addEntry(newEntry));
-
-  //   const decryptWithAES = (ciphertext) => {
-  //     const passphrase = "persephone";
-  //     const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-  //     const originalText = bytes.toString(CryptoJS.enc.Utf8);
-  //     return originalText;
-  //   };
 };
 
 // export const updateEntry = (entryObj) => async (dispatch) => {
