@@ -24,7 +24,10 @@ const Journal = () => {
           <div id="entries-list">
             <div>these are your entries by title:</div>
             {Object.values(entries).map((entry) => (
-              <Link to={`/entries/${entry.id}`}>{entry.title}</Link>
+              <Link key={entry.id} to={`/entries/${entry.id}`}>
+                {entry.title}
+              </Link>
+              //   need to figure this out on app.js
             ))}
           </div>
           <EntryForm entries={entries} />

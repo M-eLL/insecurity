@@ -1,6 +1,7 @@
 const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
+const { CryptoJS } = require("crypto-js");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const {
@@ -55,9 +56,40 @@ router.get(
       where: { userId: user.id },
       include: [Category],
     });
-    console.log(entries);
     res.json(entries);
   })
 );
+
+// post an encryted entry
+router.post(
+  "/:id/entries",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { title, text, encryption_key } = req.body;
+    const entry = await Entry.Create({ title, text, encryption_key });
+
+    const encrytedEntry = (text) => {
+      const passphrase = "persephone";
+      console.log(encrytedEntry, entry);
+      return CryptoJS.AES.encrypt(text, passphrase).toString();
+    };
+    res.json({ entry });
+  })
+);
+// router.post(
+//   "/entries",
+//   restoreUser,
+//   asyncHandler(async (req, res) => {
+//     const { title, text, encryption_key } = req.body;
+//     const entry = await Entry.Create({ title, text, encryption_key });
+
+//     const encrytedEntry = (text) => {
+//       const passphrase = "persephone";
+//       console.log(encrytedEntry, entry);
+//       return CryptoJS.AES.encrypt(text, passphrase).toString();
+//     };
+//     res.json({ entry });
+//   })
+// );
 
 module.exports = router;
