@@ -1,7 +1,7 @@
 const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
-const { CryptoJS } = require("crypto-js");
+const CryptoJS = require("crypto-js");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const {
@@ -67,16 +67,23 @@ router.post(
   "/:id/entries",
   restoreUser,
   asyncHandler(async (req, res) => {
-    const { text, title } = req.body;
+    const { text, title, encryption_key } = req.body;
+    console.log(req.body);
+    const encryptedEntry = (text) => {
+      const passphrase = "persephone";
+      return CryptoJS.AES.encrypt(text, encryption_key).toString();
+    };
+    const encryptedText = encryptedEntry(text);
     const entry = await Entry.create({
       title,
       userId: req.params.id,
-      text,
+      text: encryptedText,
     });
 
     return res.json({ entry });
   })
 );
+
 // router.post(
 //   "/:id/entries",
 //   restoreUser,

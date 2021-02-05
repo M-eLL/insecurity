@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEntries, createEntry } from "../../store/entries";
+import CryptoJS from "crypto-js";
 
 const EntryForm = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [password, setPassword] = useState("");
 
   const user = useSelector((state) => state.session.user);
   const entries = useSelector((state) => state.entries);
@@ -15,15 +17,12 @@ const EntryForm = () => {
     dispatch(getEntries());
   }, [dispatch]);
 
-  // const CryptoJS = require("crypto-js");
-  // const AES = require("crypto-js/aes");
-
-  // const decryptWithAES = (ciphertext) => {
-  //   const passphrase = "persephone";
-  //   const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-  //   const originalText = bytes.toString(CryptoJS.enc.Utf8);
-  //   return originalText;
-  // };
+  const decryptWithAES = (ciphertext) => {
+    const passphrase = "persephone";
+    const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+    const originalText = bytes.toString(CryptoJS.enc.Utf8);
+    return originalText;
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ const EntryForm = () => {
       title,
       text,
       userId: user.id,
-      // encryption_key,
+      encryption_key: password,
     };
     console.log(newEntry);
     dispatch(createEntry(newEntry));
@@ -54,6 +53,12 @@ const EntryForm = () => {
           onChange={(e) => setText(e.target.value)}
           placeholder="WRITE SOMETHING"
         ></textarea>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="password"
+        ></input>
         <button>submit</button>
       </form>
     </div>
