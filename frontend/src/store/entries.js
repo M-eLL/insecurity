@@ -53,14 +53,12 @@ const reducer = (state = initState, action) => {
   // let newState = Object.assign({}, state);
   let newState;
   switch (action.type) {
-    // case SET_ENTRIES:
-    //   for (let entry of action.payload) {
-    //     newState[entry.id] = entry;
-    //   }
-    //   return newState;
     case SET_ENTRIES:
       newState = action.payload;
       return { ...newState };
+    case ADD_ENTRY:
+      newState = action.payload;
+      return { ...state, newState };
     default:
       return state;
   }
