@@ -1,7 +1,32 @@
 import "./homepage.css";
+import { useSelector } from "react-redux";
+import { useParams, Link } from "react-router-dom";
 
-const Home = () => {
-  return <h1>hi</h1>;
+const Homepage = () => {
+  const userId = useParams();
+  const user = useSelector((state) => {
+    return state.session.user;
+  });
+
+  return (
+    <div>
+      {!user && (
+        <div>
+          WELCOME TO (in)security
+          <h1>yo who r u</h1>
+          {/* <Link to={`/entries`}>Go to journal</Link> */}
+        </div>
+      )}
+      {user && (
+        <div>
+          <h1>
+            Hey {user.username}! HEY STUPID IDDIOTTTTTTTT SPILL THE TEA BIHHH
+          </h1>
+          <Link to={`/entries`}>Go to journal</Link>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default Home;
+export default Homepage;

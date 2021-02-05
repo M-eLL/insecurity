@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
-import Home from "./components/Homepage";
+import Homepage from "./components/Homepage";
+import Journal from "./components/Journal";
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -22,12 +23,14 @@ function App() {
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
-          <Route path="/">
-            <Home />
+          <Route exact path="/">
+            <Homepage />
+          </Route>
+          <Route exact path="/entries">
+            <Journal />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-            <Home />
           </Route>
         </Switch>
       )}
