@@ -8,7 +8,7 @@ const {
   requireAuth,
   restoreUser,
 } = require("../../utils/auth");
-const { User, Entry } = require("../../db/models");
+const { User, Entry, Category, Prompt } = require("../../db/models");
 
 const router = express.Router();
 
@@ -53,6 +53,7 @@ router.get(
     const { user } = req;
     const entries = await Entry.findAll({
       where: { userId: user.id },
+      include: [Category],
     });
     console.log(entries);
     res.json(entries);
