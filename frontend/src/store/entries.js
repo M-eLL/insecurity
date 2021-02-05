@@ -16,13 +16,17 @@ export const getEntries = (userId) => async (dispatch) => {
 const initState = {};
 
 const reducer = (state = initState, action) => {
-  const newState = Object.assign({}, state);
+  // let newState = Object.assign({}, state);
+  let newState;
   switch (action.type) {
+    // case SET_ENTRIES:
+    //   for (let entry of action.payload) {
+    //     newState[entry.id] = entry;
+    //   }
+    //   return newState;
     case SET_ENTRIES:
-      for (let entry of action.payload) {
-        newState[entry.id] = entry;
-      }
-      return newState;
+      newState = action.payload;
+      return { ...newState };
     default:
       return state;
   }
