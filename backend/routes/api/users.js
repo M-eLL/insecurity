@@ -49,7 +49,6 @@ router.post(
 
 // finds all entries
 router.get(
-  // "/:id/entries",
   "/entries",
   restoreUser,
   asyncHandler(async (req, res) => {
@@ -59,6 +58,17 @@ router.get(
       include: [Category],
     });
     res.json(entries);
+  })
+);
+
+// finds one entry
+router.get(
+  "/entries/:entryId",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const entry = await Entry.findByPk(parseInt(entryId));
+    res.json(entry);
   })
 );
 
