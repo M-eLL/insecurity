@@ -2,19 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getEntries, createEntry } from "../../store/entries";
-import EntryForm from "../EntryForm";
+import "./journal.css";
 
 const Journal = () => {
-  //   const CryptoJS = require("crypto-js");
-  //   const AES = require("crypto-js/aes");
-
-  //   const decryptWithAES = (ciphertext) => {
-  //     const passphrase = "persephone";
-  //     const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-  //     const originalText = bytes.toString(CryptoJS.enc.Utf8);
-  //     return originalText;
-  //   };
-
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
@@ -30,22 +20,15 @@ const Journal = () => {
     <div>
       {user && (
         <div>
-          <div id="entries-list">
-            <div>these are your entries by title: encrypted text</div>
-            {Object.values(entries).map((entry) => (
-              <Link key={entry.id} to={`/entries/${entry.id}`}>
-                {/* {entry.title} */}
-                <div>
-                  <br />
-                  {entry.title}: <br />
-                  {entry.text}
-                  <br />
-                </div>
-              </Link>
-              //   need to figure this out on app.js
-            ))}
-          </div>
-          {/* <EntryForm entries={entries} /> */}
+          <h1>these are your entries by title: encrypted text</h1>
+          {Object.values(entries).map((entry) => (
+            <Link key={entry.id} to={`/entries/${entry.id}`}>
+              <div id="entries-list">
+                <h3>{entry.title}:</h3>
+                <p>"{entry.text}"</p>
+              </div>
+            </Link>
+          ))}
         </div>
       )}
     </div>

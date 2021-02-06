@@ -1,4 +1,4 @@
-#home-page-container {
+/* #home-page-container {
   height: 500px;
   position: relative;
   overflow: hidden;
@@ -21,8 +21,7 @@
   text-shadow: lightgray 1px 0 5px;
   color: black;
   font-size: 100px;
-  /* margin-right: 100px; */
 }
 #welcome-picture {
   width: 100%;
-}
+} */

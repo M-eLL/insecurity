@@ -11,12 +11,12 @@ const Homepage = () => {
 
   return (
     <div>
-      <div id="home-page-container">
-        <img id="welcome-picture" src={ice} />
-        <div id="home-page-overlay">
-          <h1>IN.SECURITY</h1>
-        </div>
-      </div>
+      {/* <div id="home-page-container">
+        <img id="welcome-picture" src={ice} /> */}
+        {/* <div id="home-page-overlay"> */}
+        <h1>IN.SECURITY</h1>
+        {/* </div> */}
+      {/* </div> */}
       {!user && (
         <div>
           WELCOME TO (in)security
