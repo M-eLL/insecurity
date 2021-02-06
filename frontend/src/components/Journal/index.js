@@ -5,15 +5,15 @@ import { getEntries, createEntry } from "../../store/entries";
 import EntryForm from "../EntryForm";
 
 const Journal = () => {
-//   const CryptoJS = require("crypto-js");
-//   const AES = require("crypto-js/aes");
+  //   const CryptoJS = require("crypto-js");
+  //   const AES = require("crypto-js/aes");
 
-//   const decryptWithAES = (ciphertext) => {
-//     const passphrase = "persephone";
-//     const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-//     const originalText = bytes.toString(CryptoJS.enc.Utf8);
-//     return originalText;
-//   };
+  //   const decryptWithAES = (ciphertext) => {
+  //     const passphrase = "persephone";
+  //     const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+  //     const originalText = bytes.toString(CryptoJS.enc.Utf8);
+  //     return originalText;
+  //   };
 
   const dispatch = useDispatch();
 
@@ -31,15 +31,21 @@ const Journal = () => {
       {user && (
         <div>
           <div id="entries-list">
-            <div>these are your entries by title:</div>
+            <div>these are your entries by title: encrypted text</div>
             {Object.values(entries).map((entry) => (
               <Link key={entry.id} to={`/entries/${entry.id}`}>
-                {entry.title}
+                {/* {entry.title} */}
+                <div>
+                  <br />
+                  {entry.title}: <br />
+                  {entry.text}
+                  <br />
+                </div>
               </Link>
               //   need to figure this out on app.js
             ))}
           </div>
-          <EntryForm entries={entries} />
+          {/* <EntryForm entries={entries} /> */}
         </div>
       )}
     </div>

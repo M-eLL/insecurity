@@ -37,7 +37,6 @@ const EntryForm = () => {
     dispatch(createEntry(newEntry));
   };
 
-  console.log(entries, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   return (
     <div>
       <h1>this is the entry form component</h1>
