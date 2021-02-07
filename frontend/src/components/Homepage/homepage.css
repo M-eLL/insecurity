@@ -1,3 +1,10 @@
+.header {
+  font-size: 100px;
+  background-color: black;
+  text-shadow: 2px 7px 5px rgb(0, 255, 51), 0px -4px 10px rgb(21, 81, 33);
+  text-align: center;
+}
+
 /* #home-page-container {
   height: 500px;
   position: relative;
