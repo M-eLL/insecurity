@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}

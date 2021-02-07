@@ -1,0 +1,27 @@
+/* #home-page-container {
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+#home-page-overlay {
+  height: 500px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.173);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#home-page-overlay h1 {
+  font-family: sans-serif;
+  text-shadow: lightgray 1px 0 5px;
+  color: black;
+  font-size: 100px;
+}
+#welcome-picture {
+  width: 100%;
+} */

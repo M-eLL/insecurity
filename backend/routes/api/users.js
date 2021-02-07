@@ -10,7 +10,7 @@ const {
   restoreUser,
 } = require("../../utils/auth");
 
-const { User, Entry, Category, Prompt } = require("../../db/models");
+const { User, Entry, Category } = require("../../db/models");
 
 const router = express.Router();
 
@@ -49,7 +49,6 @@ router.post(
 
 // finds all entries
 router.get(
-  // "/:id/entries",
   "/entries",
   restoreUser,
   asyncHandler(async (req, res) => {
@@ -59,6 +58,27 @@ router.get(
       include: [Category],
     });
     res.json(entries);
+  })
+);
+
+// finds one entry
+router.get(
+  "/entries/:entryId",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const entry = await Entry.findByPk(parseInt(entryId));
+    res.json(entry);
+  })
+);
+
+// delete an entry
+router.delete(
+  "/entries/:entryId",
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const entry = await Entry.findByPk(parseInt(entryId));
+    await entry.destroy(entry.id);
   })
 );
 
@@ -83,24 +103,5 @@ router.post(
     return res.json({ entry });
   })
 );
-
-// router.post(
-//   "/:id/entries",
-//   restoreUser,
-//   asyncHandler(async (req, res) => {
-//     const { title, text, encryption_key } = req.body;
-//     const encryptedText = encryptedEntry(text);
-//     const entryObj = await Entry.Create({
-//       title,
-//       text: encryptedText,
-//     });
-
-//     const encrytedEntry = (text) => {
-//       const passphrase = "persephone";
-//       return CryptoJS.AES.encrypt(text, passphrase).toString();
-//     };
-//     res.json({ entryObj });
-//   })
-// );
 
 module.exports = router;

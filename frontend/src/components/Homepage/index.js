@@ -1,6 +1,7 @@
 import "./homepage.css";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
+import picture from "./simp.jpg";
 
 const Homepage = () => {
   const userId = useParams();
@@ -10,6 +11,12 @@ const Homepage = () => {
 
   return (
     <div>
+      {/* <div id="home-page-container">
+        <img id="welcome-picture" src={picture} /> */}
+      {/* <div id="home-page-overlay"> */}
+      <h1>IN.SECURITY</h1>
+      {/* </div> */}
+      {/* </div> */}
       {!user && (
         <div>
           WELCOME TO (in)security
@@ -22,6 +29,7 @@ const Homepage = () => {
           <h1>
             Hey {user.username}! HEY STUPID IDDIOTTTTTTTT SPILL THE TEA BIHHH
           </h1>
+          <Link to={`/entries/new`}>new entry</Link>
           <Link to={`/entries`}>Go to journal</Link>
         </div>
       )}
