@@ -10,7 +10,7 @@ const {
   restoreUser,
 } = require("../../utils/auth");
 
-const { User, Entry, Category, Prompt } = require("../../db/models");
+const { User, Entry, Category } = require("../../db/models");
 
 const router = express.Router();
 
@@ -69,6 +69,16 @@ router.get(
     const entryId = req.params.entryId;
     const entry = await Entry.findByPk(parseInt(entryId));
     res.json(entry);
+  })
+);
+
+// delete an entry
+router.delete(
+  "/entries/:entryId",
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const entry = await Entry.findByPk(parseInt(entryId));
+    await entry.destroy(entry.id);
   })
 );
 

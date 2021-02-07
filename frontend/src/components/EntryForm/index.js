@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getEntries, createEntry } from "../../store/entries";
 import CryptoJS from "crypto-js";
 
 const EntryForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -35,6 +37,7 @@ const EntryForm = () => {
     };
     console.log(newEntry);
     dispatch(createEntry(newEntry));
+    history.push("/entries");
   };
 
   return (
@@ -45,7 +48,7 @@ const EntryForm = () => {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="IS THIS WORKING"
+          placeholder="Title"
         />
         <textarea
           value={text}

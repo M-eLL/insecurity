@@ -1,7 +1,7 @@
 import "./homepage.css";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import ice from "./ice.jpg";
+import picture from "./simp.jpg";
 
 const Homepage = () => {
   const userId = useParams();
@@ -12,7 +12,7 @@ const Homepage = () => {
   return (
     <div>
       {/* <div id="home-page-container">
-        <img id="welcome-picture" src={ice} /> */}
+        <img id="welcome-picture" src={picture} /> */}
       {/* <div id="home-page-overlay"> */}
       <h1>IN.SECURITY</h1>
       {/* </div> */}
