@@ -12,25 +12,26 @@ const Homepage = () => {
   return (
     <div>
       <div className="header">
-        <h1 id="logo-head">IN.SECURITY</h1>
+        <h1 id="logo-font">IN.SECURITY</h1>
       </div>
-
-      {!user && (
-        <div>
-          WELCOME TO (in)security
-          <h1>yo who r u</h1>
-          {/* <Link to={`/entries`}>Go to journal</Link> */}
-        </div>
-      )}
-      {user && (
-        <div>
-          <h1>
-            Hey {user.username}! HEY STUPID IDDIOTTTTTTTT SPILL THE TEA BIHHH
-          </h1>
-          <Link to={`/entries/new`}>new entry</Link>
-          <Link to={`/entries`}>Go to journal</Link>
-        </div>
-      )}
+      <div className="home-body">
+        {!user && (
+          <div>
+            WELCOME TO (in)security
+            <p>yo who r u</p>
+            {/* <Link to={`/entries`}>Go to journal</Link> */}
+          </div>
+        )}
+        {user && (
+          <div>
+            <p>
+              Hey {user.username}! HEY STUPID IDDIOTTTTTTTT SPILL THE TEA BIHHH
+            </p>
+            <Link to={`/entries/new`}>new entry</Link>
+            <Link to={`/entries`}>Go to journal</Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

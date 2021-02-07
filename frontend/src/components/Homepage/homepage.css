@@ -1,7 +1,26 @@
 .header {
-  font-size: 100px;
-  background-color: black;
+  /* font-size: 100px;
+  color: black;
+  background-color: rgb(20, 6, 21);
+  text-align: center;
+  text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81);
+  text-shadow: 2px 7px 5px rgb(191, 145, 255), 0px -4px 10px rgb(46, 21, 81);
   text-shadow: 2px 7px 5px rgb(0, 255, 51), 0px -4px 10px rgb(21, 81, 33);
+  text-shadow: 2px 7px 5px rgb(21, 81, 33), 0px -4px 10px rgb(21, 81, 33); */
+}
+
+#logo-font {
+  font-size: 150px;
+  color: black;
+  background-color: rgb(20, 6, 21);
+  text-align: center;
+  text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81);
+  /* text-shadow: 2px 7px 5px rgb(191, 145, 255), 0px -4px 10px rgb(46, 21, 81); */
+  /* text-shadow: 2px 7px 5px rgb(0, 255, 51), 0px -4px 10px rgb(21, 81, 33); */
+  /* text-shadow: 2px 7px 5px rgb(21, 81, 33), 0px -4px 10px rgb(21, 81, 33); */
+}
+
+.home-body {
   text-align: center;
 }
 
