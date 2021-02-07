@@ -37,6 +37,7 @@ const EntryForm = () => {
     };
     console.log(newEntry);
     dispatch(createEntry(newEntry));
+
     history.push("/entries");
   };
 

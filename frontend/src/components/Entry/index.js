@@ -8,13 +8,15 @@ const Entry = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [password, setPassword] = useState("");
-  const [passphrase, setPassphrase] = useState("");
-
   const { entryId } = useParams();
 
+  // const [entry, setEntry] = useState(entry);
+  const [passphrase, setPassphrase] = useState("");
+
   const user = useSelector((state) => state.session.user);
-  const entry = useSelector((state) => state.currentEntry);
+  const [entry, setEntry] = useState(
+    useSelector((state) => state.currentEntry)
+  );
 
   useEffect(() => {
     dispatch(getOneEntry(entryId));
@@ -37,7 +39,7 @@ const Entry = () => {
         <div>
           <h1>encrypted entry: </h1>
           {entry.title} <br />
-          {entry.text}
+          {entry.text} <br />
           <form>
             <input
               type="password"
@@ -45,7 +47,13 @@ const Entry = () => {
               onChange={(e) => setPassphrase(e.target.value)}
               placeholder="passphrase"
             ></input>
-            <button onClick={decryptWithAES}>decrypt message</button>
+            <button
+              onClick={() => {
+                entry.text = decryptWithAES();
+              }}
+            >
+              decrypt message
+            </button>
           </form>
           <div>
             <button onClick={deleteHandler}>delete</button>
