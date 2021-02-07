@@ -42,7 +42,8 @@ const EntryForm = () => {
   };
 
   return (
-    <div>
+    <div
+    >
       <h1>this is the entry form component</h1>
       <form onSubmit={onSubmit}>
         <input
