@@ -94,23 +94,4 @@ router.post(
   })
 );
 
-// router.post(
-//   "/:id/entries",
-//   restoreUser,
-//   asyncHandler(async (req, res) => {
-//     const { title, text, encryption_key } = req.body;
-//     const encryptedText = encryptedEntry(text);
-//     const entryObj = await Entry.Create({
-//       title,
-//       text: encryptedText,
-//     });
-
-//     const encrytedEntry = (text) => {
-//       const passphrase = "persephone";
-//       return CryptoJS.AES.encrypt(text, passphrase).toString();
-//     };
-//     res.json({ entryObj });
-//   })
-// );
-
 module.exports = router;

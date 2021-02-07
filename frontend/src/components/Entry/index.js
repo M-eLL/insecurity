@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-// import { getEntries, } from "../../store/entries";
 import { getOneEntry } from "../../store/currentEntry";
 
 const Entry = () => {
@@ -24,15 +23,6 @@ const Entry = () => {
         <div>
           <h1>encrypted entry: </h1>
           {entry.text}
-          {/* <p>{entries[entryId].text}</p> */}
-          {/* {Object.values(entries).map((entry) => (
-            <Link key={entry.id} to={`/entries/${entry.id}`}>
-              <div id="entries-list">
-                <h3>{entry.title}:</h3>
-                <p>"{entry.text}"</p>
-              </div>
-            </Link>
-          ))} */}
         </div>
       )}
     </div>
