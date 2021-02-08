@@ -37,31 +37,37 @@ const EntryForm = () => {
     };
     console.log(newEntry);
     dispatch(createEntry(newEntry));
+
     history.push("/entries");
   };
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h1>this is the entry form component</h1>
       <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
-        />
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="WRITE SOMETHING"
-        ></textarea>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
-        ></input>
-        <button>submit</button>
+        <div>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+          />
+          <br />
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="WRITE SOMETHING"
+          ></textarea>
+          <br />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="password"
+          ></input>
+          <br />
+          <button>submit</button>
+        </div>
       </form>
     </div>
   );

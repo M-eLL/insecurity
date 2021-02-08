@@ -1,27 +1,15 @@
-/* #home-page-container {
-  height: 500px;
-  position: relative;
-  overflow: hidden;
-}
-
-#home-page-overlay {
-  height: 500px;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.173);
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#home-page-overlay h1 {
-  font-family: sans-serif;
-  text-shadow: lightgray 1px 0 5px;
+#logo-font {
+  font-size: 150px;
   color: black;
-  font-size: 100px;
+  background-color: rgb(20, 6, 21);
+  text-align: center;
+  text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(85, 44, 89);
+  /* text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81); */
+  /* text-shadow: 2px 7px 5px rgb(191, 145, 255), 0px -4px 10px rgb(60, 27, 106); */
+  /* text-shadow: 2px 7px 5px rgb(0, 255, 51), 0px -4px 10px rgb(21, 81, 33); */
+  /* text-shadow: 2px 7px 5px rgb(21, 81, 33), 0px -4px 10px rgb(21, 81, 33); */
 }
-#welcome-picture {
-  width: 100%;
-} */
+
+.home-body {
+  text-align: center;
+}

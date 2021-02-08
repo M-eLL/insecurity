@@ -20,7 +20,9 @@ const Journal = () => {
     <div>
       {user && (
         <div>
-          <h1>these are your entries by title: encrypted text</h1>
+          <h1 style={{ textAlign: "center", color: "white" }}>
+            these are your entries by title: encrypted text
+          </h1>
           {Object.values(entries).map((entry) => (
             <Link key={entry.id} to={`/entries/${entry.id}`}>
               <div id="entries-list">

@@ -8,52 +8,57 @@ const Entry = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [password, setPassword] = useState("");
-
   const { entryId } = useParams();
+
+  const [passphrase, setPassphrase] = useState("");
+  // const [entry, setEntry] = useState(entry);
 
   const user = useSelector((state) => state.session.user);
   const entry = useSelector((state) => state.currentEntry);
+  // const [entry, setEntry] = useState(
+  //   useSelector((state) => state.currentEntry)
+  // );
 
   useEffect(() => {
     dispatch(getOneEntry(entryId));
   }, [entryId, dispatch]);
 
-  // const decryptWithAES = (ciphertext) => {
-  //   const passphrase = "persephone";
-  //   const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-  //   const originalText = bytes.toString(CryptoJS.enc.Utf8);
-  //   return originalText;
-  // };
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   decryptWithAES();
-  // };
+  const decryptWithAES = () => {
+    const bytes = CryptoJS.AES.decrypt(entry.text, passphrase);
+    const originalText = bytes.toString(CryptoJS.enc.Utf8);
+    return originalText;
+  };
 
   const deleteHandler = () => {
     dispatch(deleteOneEntry(entryId));
     history.push("/entries");
   };
 
-  // how do i make the entry title change to the entry text just by clicking on it
-  // want to try useEffect
   return (
     <div>
       {user && (
         <div>
           <h1>encrypted entry: </h1>
-          {entry.text}
-          {/* <form onSubmit={onSubmit}>
+          <div style={{ color: '#FFFFFF' }}>
+            {entry.title} <br />
+            {entry.text} <br />
+          </div>
+          <form>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
+              value={passphrase}
+              onChange={(e) => setPassphrase(e.target.value)}
+              placeholder="passphrase"
             ></input>
-            <button>decrypt message</button>
-          </form> */}
+            <br />
+            <button
+              onClick={() => {
+                entry.text = decryptWithAES();
+              }}
+            >
+              decrypt message
+            </button>
+          </form>
           <div>
             <button onClick={deleteHandler}>delete</button>
           </div>
