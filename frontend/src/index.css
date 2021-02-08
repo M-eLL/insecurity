@@ -13,8 +13,9 @@
   min-width: 250px;
   margin: 20px;
   padding: 1em;
-  border: 1px solid #3f79bf;
+  border: 1px solid rgb(168, 102, 174);
   border-radius: 5px;
-  box-shadow: 2px 3px 3px 1px #3f79bf, 1px 0px 10px 5px #235594;
+  box-shadow: 2px 3px 3px 1px rgb(76, 21, 81),
+    1px 0px 10px 5px rgb(76, 21, 81);
   text-transform: uppercase;
 }

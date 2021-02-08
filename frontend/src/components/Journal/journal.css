@@ -1,9 +1,9 @@
 #entries-list {
-  /* border: 1px solid rgba(106, 54, 255, 0.7); */
+  border: 1px solid rgba(106, 54, 255, 0.7);
   /* box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0); */
   /* box-shadow: 2px 2px 5px rgb(0, 255, 51), 0px -4px 10px rgb(21, 81, 33); */
   text-align: center;
-  box-shadow: 2px 7px 5px -4px #3f79bf, 0px -4px 10px #235594;
+  /* box-shadow: 2px 7px 5px -4px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81); */
   margin: 20px auto;
   width: 700px;
   padding: 5px;

@@ -4,10 +4,10 @@
   background-color: rgb(0, 0, 0);
   text-align: center;
   /* text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(85, 44, 89); */
-  /* text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81); */
+  text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81);
   /* text-shadow: 2px 7px 5px rgb(191, 145, 255), 0px -4px 10px rgb(60, 27, 106); */
   /* text-shadow: 2px 7px 5px rgb(0, 255, 51), 0px -4px 10px rgb(21, 81, 33); */
-  text-shadow: 2px 7px 5px #3f79bf, 0px -4px 10px #235594;
+  /* text-shadow: 2px 7px 5px #3f79bf, 0px -4px 10px #235594; */
   /* text-shadow: 2px 7px 5px rgb(21, 81, 33), 0px -4px 10px rgb(21, 81, 33); */
 }
 
