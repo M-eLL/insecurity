@@ -11,13 +11,13 @@ const Homepage = () => {
 
   return (
     <div>
-      <div className="header">
+      <div id="header">
         <h1 id="logo-font">IN.SECURITY</h1>
       </div>
       <div className="home-body">
         {!user && (
           <div>
-            WELCOME TO (in)security
+            WELCOME TO in.security
             <p>yo who r u</p>
             {/* <Link to={`/entries`}>Go to journal</Link> */}
           </div>

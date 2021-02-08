@@ -10,13 +10,14 @@ const Entry = () => {
 
   const { entryId } = useParams();
 
-  // const [entry, setEntry] = useState(entry);
   const [passphrase, setPassphrase] = useState("");
+  // const [entry, setEntry] = useState(entry);
 
   const user = useSelector((state) => state.session.user);
-  const [entry, setEntry] = useState(
-    useSelector((state) => state.currentEntry)
-  );
+  const entry = useSelector((state) => state.currentEntry);
+  // const [entry, setEntry] = useState(
+  //   useSelector((state) => state.currentEntry)
+  // );
 
   useEffect(() => {
     dispatch(getOneEntry(entryId));
@@ -38,8 +39,10 @@ const Entry = () => {
       {user && (
         <div>
           <h1>encrypted entry: </h1>
-          {entry.title} <br />
-          {entry.text} <br />
+          <div style={{ color: '#FFFFFF' }}>
+            {entry.title} <br />
+            {entry.text} <br />
+          </div>
           <form>
             <input
               type="password"
@@ -47,6 +50,7 @@ const Entry = () => {
               onChange={(e) => setPassphrase(e.target.value)}
               placeholder="passphrase"
             ></input>
+            <br />
             <button
               onClick={() => {
                 entry.text = decryptWithAES();
