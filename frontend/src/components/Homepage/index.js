@@ -24,11 +24,15 @@ const Homepage = () => {
         )}
         {user && (
           <div>
-            <p>
+            <h2>
               Hey {user.username}! HEY STUPID IDDIOTTTTTTTT SPILL THE TEA BIHHH
-            </p>
-            <Link to={`/entries/new`}>new entry</Link>
-            <Link to={`/entries`}>Go to journal</Link>
+            </h2>
+            <Link to={`/entries/new`}>
+              <button>new entry</button>
+            </Link>
+            <Link to={`/entries`}>
+              <button>view entries</button>
+            </Link>
           </div>
         )}
       </div>
