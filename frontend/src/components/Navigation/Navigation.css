@@ -1,3 +1,13 @@
-.profile-dropdown {
+/* .profile-dropdown {
   position: absolute;
+} */
+
+.navbar {
+  margin-right: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #3f79bf48;
+  text-transform: uppercase;
 }
