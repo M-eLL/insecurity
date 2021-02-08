@@ -20,9 +20,10 @@ const Entry = () => {
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
-  // const [currEntry, setcurrEntry] = useState(
-  //   useSelector((state) => state.currentEntry)
-  // );
+
+  useEffect(() => {
+    setText(currEntry.text);
+  }, [currEntry]);
 
   useEffect(() => {
     dispatch(getOneEntry(entryId));
@@ -51,7 +52,7 @@ const Entry = () => {
           <h1>encrypted entry: </h1>
           <div style={{}}>
             {currEntry.title} <br />
-            {currEntry.text} <br />
+            {text} <br />
           </div>
           <br />
           <div>
@@ -64,7 +65,8 @@ const Entry = () => {
             <br />
             <button
               onClick={() => {
-                currEntry.text = decryptWithAES();
+                const decryptedText = decryptWithAES();
+                setText(decryptedText);
               }}
             >
               decrypt message
