@@ -2,6 +2,7 @@ import { fetch } from "./csrf.js";
 
 const GET_ENTRY = "entry/setEntry";
 const DELETE_ENTRY = "entry/deleteEntry";
+const EDIT_ENTRY = "entry/editEntry";
 
 const setEntry = (payload) => ({
   type: GET_ENTRY,
@@ -10,6 +11,11 @@ const setEntry = (payload) => ({
 
 const deleteEntry = (payload) => ({
   type: DELETE_ENTRY,
+  payload,
+});
+
+const editEntry = (payload) => ({
+  type: EDIT_ENTRY,
   payload,
 });
 
@@ -26,6 +32,15 @@ export const deleteOneEntry = (entryId) => async (dispatch) => {
   });
   const id = response.data.entryId;
   dispatch(deleteEntry(id));
+};
+
+export const editOneEntry = (entryId) => async (dispatch) => {
+  const response = await fetch(`/api/users/entries/${entryId}`, {
+    method: "PUT",
+  });
+  const entry = response.data;
+  console.log(entry);
+  dispatch(editEntry(entry));
 };
 
 const initState = {};

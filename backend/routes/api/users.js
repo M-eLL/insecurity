@@ -104,4 +104,19 @@ router.post(
   })
 );
 
+// edit an entry
+router.put(
+  "/entries/:entryId",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const { text, title } = req.body;
+    console.log(req.body);
+
+    const entry = await Entry.findByPk(entryId);
+    await entry.update({ text: text, title: title });
+    return res.json({ entry });
+  })
+);
+
 module.exports = router;
