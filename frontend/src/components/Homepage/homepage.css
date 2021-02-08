@@ -1,7 +1,7 @@
 #logo-font {
   font-size: 150px;
   color: black;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(20, 6, 21);
   text-align: center;
   /* text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(85, 44, 89); */
   text-shadow: 2px 7px 5px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81);
@@ -13,5 +13,4 @@
 
 .home-body {
   text-align: center;
-
 }
