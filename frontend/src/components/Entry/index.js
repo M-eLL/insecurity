@@ -39,7 +39,7 @@ const Entry = () => {
       {user && (
         <div>
           <h1>encrypted entry: </h1>
-          <div style={{ color: '#FFFFFF' }}>
+          <div style={{}}>
             {entry.title} <br />
             {entry.text} <br />
           </div>

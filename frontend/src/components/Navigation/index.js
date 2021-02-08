@@ -12,9 +12,9 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <ProfileButton user={sessionUser} />
         <NavLink to="/entries">your encrypted entries</NavLink>
         <NavLink to="/entries/new">write a new encrypted entry</NavLink>
+        <ProfileButton user={sessionUser} />
       </>
     );
   } else {
@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
 
   return (
     <ul>
-      <li>
+      <li className="navbar">
         <NavLink exact to="/">
           Home
         </NavLink>
