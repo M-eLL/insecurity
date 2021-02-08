@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getEntries, createEntry } from "../../store/entries";
 import CryptoJS from "crypto-js";
+import "./form.css";
 
 const EntryForm = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const EntryForm = () => {
       <h1>this is the entry form component</h1>
       <form onSubmit={onSubmit}>
         <div>
+          Title:{" "}
           <input
             type="text"
             value={title}
@@ -53,19 +55,22 @@ const EntryForm = () => {
             placeholder="Title"
           />
           <br />
+          <br />
           <textarea
+            className="textarea"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="WRITE SOMETHING"
           ></textarea>
           <br />
+          <br />
+          passphrase:{" "}
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
           ></input>
-          <br />
           <button>submit</button>
         </div>
       </form>

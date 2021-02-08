@@ -7,6 +7,7 @@ import {
   editOneEntry,
 } from "../../store/currentEntry";
 import CryptoJS from "crypto-js";
+import "./entrypage.css";
 
 const Entry = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Entry = () => {
   };
 
   return (
-    <div>
+    <div className="entry-page">
       {user && (
         <div>
           <h1>encrypted entry: </h1>
@@ -55,6 +56,7 @@ const Entry = () => {
             {text} <br />
           </div>
           <br />
+          show msg?
           <div>
             <input
               type="password"
@@ -62,7 +64,6 @@ const Entry = () => {
               onChange={(e) => setPassphrase(e.target.value)}
               placeholder="passphrase"
             ></input>
-            <br />
             <button
               onClick={() => {
                 const decryptedText = decryptWithAES();
@@ -71,7 +72,7 @@ const Entry = () => {
             >
               decrypt message
             </button>
-            <button onClick={deleteHandler}>delete</button>
+            <br />
             <br />
             <br />
             <label>
@@ -82,12 +83,21 @@ const Entry = () => {
                 placeholder="TITLE"
               />
               <button onClick={editHandler}>edit</button>
+              <br />
               <input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="TEXT"
               />
               <button onClick={editHandler}>edit</button>
+              <br />
+              <br />
+              <br />
+              deletee entry?
+              <br />
+              <button style={{ color: "red" }} onClick={deleteHandler}>
+                delete
+              </button>
             </label>
           </div>
         </div>
