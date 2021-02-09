@@ -34,9 +34,12 @@ export const deleteOneEntry = (entryId) => async (dispatch) => {
   dispatch(deleteEntry(id));
 };
 
-export const editOneEntry = (entryId) => async (dispatch) => {
+export const editOneEntry = (entryId, title) => async (dispatch) => {
   const response = await fetch(`/api/users/entries/${entryId}`, {
     method: "PUT",
+    body: JSON.stringify({
+      title,
+    }),
   });
   const entry = response.data;
   console.log(entry);

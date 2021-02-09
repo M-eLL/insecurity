@@ -37,7 +37,7 @@ const Entry = () => {
   };
 
   const editHandler = () => {
-    dispatch(editOneEntry(entryId));
+    dispatch(editOneEntry(entryId, title));
     history.push("/entries");
   };
 

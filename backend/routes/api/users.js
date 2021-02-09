@@ -110,11 +110,13 @@ router.put(
   restoreUser,
   asyncHandler(async (req, res) => {
     const entryId = req.params.entryId;
-    const { text, title } = req.body;
+    const { title } = req.body;
     console.log(req.body);
 
-    const entry = await Entry.findByPk(entryId);
-    await entry.update({ text: text, title: title });
+    const entry = await Entry.findByPk(parseInt(entryId));
+
+    await entry.update({ title: title });
+    console.log(entry);
     return res.json({ entry });
   })
 );
