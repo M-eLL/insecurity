@@ -32,9 +32,16 @@ const Entry = () => {
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
-    let originalText = "couldnt decrypt";
+    console.log(bytes);
+    let originalText = "NOPE";
     try {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
+      if (originalText.split(" ").length > 5) {
+        return "more than 5 words";
+      }
+      if (originalText.split(" ").length === 3) {
+        return "this is cool";
+      }
       return originalText;
     } catch {
       return originalText;
