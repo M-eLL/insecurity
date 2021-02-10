@@ -95,13 +95,13 @@ const Entry = () => {
                 placeholder="TITLE"
               />
               <button onClick={editHandler}>edit</button>
-              <br />
+              {/* <br />
               <input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="TEXT"
               />
-              <button onClick={editHandler}>edit</button>
+              <button onClick={editHandler}>edit</button> */}
               <br />
               <br />
               <br />

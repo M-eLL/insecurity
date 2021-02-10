@@ -46,6 +46,21 @@ export const editOneEntry = (entryId, title) => async (dispatch) => {
   dispatch(editEntry(entry));
 };
 
+// export const editOneEntry = (entry) => async (dispatch) => {
+//   const { title, text, encryption_key, entryId } = entry;
+//   const response = await fetch(`/api/users/entries/${entryId}`, {
+//     method: "PUT",
+//     body: JSON.stringify({
+//       title,
+//       text,
+//       encryption_key,
+//     }),
+//   });
+//   const newEntry = response.data;
+//   console.log(newEntry);
+//   dispatch(editEntry(newEntry));
+// };
+
 const initState = {};
 
 const reducer = (state = initState, action) => {
@@ -53,6 +68,12 @@ const reducer = (state = initState, action) => {
   let newState;
   switch (action.type) {
     case GET_ENTRY:
+      newState = action.payload;
+      return { ...newState };
+    case DELETE_ENTRY:
+      newState = action.payload;
+      return { ...newState };
+    case EDIT_ENTRY:
       newState = action.payload;
       return { ...newState };
     default:

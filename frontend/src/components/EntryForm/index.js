@@ -78,6 +78,4 @@ const EntryForm = () => {
   );
 };
 
-// need to pull in prompts here
-
 export default EntryForm;
