@@ -18,6 +18,9 @@ const Entry = () => {
   const [passphrase, setPassphrase] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [error, setError] = useState("");
+  const [errorClass, setErrorClass] = useState("");
+  const [attempts, setAttempts] = useState(0);
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
@@ -30,26 +33,37 @@ const Entry = () => {
     dispatch(getOneEntry(entryId));
   }, [entryId, dispatch]);
 
+  useEffect(() => {
+    if (attempts >= 4) {
+      console.log("delete");
+    }
+  }, [attempts]);
+
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
-    console.log(bytes);
     let originalText = "NOPE";
+    // 1 word per 250 ms
     try {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
-      // if (originalText.split(" ").length > 5) {
-      //   return "more than 5 words";
-      // }
-      // if (originalText.split(" ").length === 3) {
-      //   return "this is cool";
-      // }
-      console.log(originalText.split(" ").length);
+      let wordCount = originalText.split("").length;
+      setTimeout(function () {
+        setText(currEntry.text);
+      }, wordCount * 50);
+      // }, 500);
+      if (originalText == "") {
+        setAttempts(attempts + 1);
+        console.log(attempts);
+        setError("wrong password");
+      } else {
+        setAttempts(0);
+      }
       return originalText;
-    } catch {
+    } catch (e) {
+      setError("whoops");
+      setErrorClass("error");
       return originalText;
     }
   };
-
-  // 250 words per minute => 4 words per second => 1 word per 250 ms
 
   const editHandler = () => {
     dispatch(editOneEntry(entryId, title));
@@ -88,6 +102,7 @@ const Entry = () => {
               decrypt message
             </button>
             <br />
+            <div className={errorClass}>{error}</div>
             <br />
             <br />
             <label>
