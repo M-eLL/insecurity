@@ -1,0 +1,7 @@
+.textarea {
+  min-height: 20em;
+  min-width: 40em;
+  font-size: 15px;
+  font-weight: lighter;
+  color: chartreuse;
+}

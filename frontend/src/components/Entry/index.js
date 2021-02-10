@@ -7,6 +7,7 @@ import {
   editOneEntry,
 } from "../../store/currentEntry";
 import CryptoJS from "crypto-js";
+import "./entrypage.css";
 
 const Entry = () => {
   const dispatch = useDispatch();
@@ -31,12 +32,24 @@ const Entry = () => {
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
-    const originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return originalText;
+    console.log(bytes);
+    let originalText = "NOPE";
+    try {
+      originalText = bytes.toString(CryptoJS.enc.Utf8);
+      if (originalText.split(" ").length > 5) {
+        return "more than 5 words";
+      }
+      if (originalText.split(" ").length === 3) {
+        return "this is cool";
+      }
+      return originalText;
+    } catch {
+      return originalText;
+    }
   };
 
   const editHandler = () => {
-    dispatch(editOneEntry(entryId));
+    dispatch(editOneEntry(entryId, title));
     history.push("/entries");
   };
 
@@ -46,15 +59,16 @@ const Entry = () => {
   };
 
   return (
-    <div>
+    <div className="entry-page">
       {user && (
         <div>
-          <h1>encrypted entry: </h1>
+          <h1>{currEntry.title}: </h1>
           <div style={{}}>
-            {currEntry.title} <br />
+            <br />
             {text} <br />
           </div>
           <br />
+          show msg?
           <div>
             <input
               type="password"
@@ -62,7 +76,6 @@ const Entry = () => {
               onChange={(e) => setPassphrase(e.target.value)}
               placeholder="passphrase"
             ></input>
-            <br />
             <button
               onClick={() => {
                 const decryptedText = decryptWithAES();
@@ -71,7 +84,7 @@ const Entry = () => {
             >
               decrypt message
             </button>
-            <button onClick={deleteHandler}>delete</button>
+            <br />
             <br />
             <br />
             <label>
@@ -82,12 +95,21 @@ const Entry = () => {
                 placeholder="TITLE"
               />
               <button onClick={editHandler}>edit</button>
+              {/* <br />
               <input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="TEXT"
               />
-              <button onClick={editHandler}>edit</button>
+              <button onClick={editHandler}>edit</button> */}
+              <br />
+              <br />
+              <br />
+              deletee entry?
+              <br />
+              <button style={{ color: "red" }} onClick={deleteHandler}>
+                delete
+              </button>
             </label>
           </div>
         </div>

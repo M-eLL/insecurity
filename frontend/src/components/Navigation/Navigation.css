@@ -8,6 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #3f79bf48;
+  border-bottom: 1px solid rgba(169, 169, 169, 0.345);
   text-transform: uppercase;
 }
