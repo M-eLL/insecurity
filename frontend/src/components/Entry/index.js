@@ -32,8 +32,13 @@ const Entry = () => {
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
-    const originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return originalText;
+    let originalText = "couldnt decrypt";
+    try {
+      originalText = bytes.toString(CryptoJS.enc.Utf8);
+      return originalText;
+    } catch {
+      return originalText;
+    }
   };
 
   const editHandler = () => {
@@ -50,9 +55,9 @@ const Entry = () => {
     <div className="entry-page">
       {user && (
         <div>
-          <h1>encrypted entry: </h1>
+          <h1>{currEntry.title}: </h1>
           <div style={{}}>
-            {currEntry.title} <br />
+            <br />
             {text} <br />
           </div>
           <br />
