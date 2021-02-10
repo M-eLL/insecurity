@@ -42,14 +42,13 @@ const Entry = () => {
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
     let originalText = "NOPE";
-    // 1 word per 250 ms
     try {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
       let wordCount = originalText.split("").length;
       setTimeout(function () {
         setText(currEntry.text);
       }, wordCount * 50);
-      // }, 500);
+      // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IS PASSCODE IS WRONG
       if (originalText == "") {
         setAttempts(attempts + 1);
         console.log(attempts);
@@ -59,7 +58,9 @@ const Entry = () => {
       }
       return originalText;
     } catch (e) {
+      // UTF8 ERROR HANDLING
       setError("whoops");
+      // SET THIS AS A CLASS TO ALTER VISUAL EFFECTS OF AN ERROR
       setErrorClass("error");
       return originalText;
     }
