@@ -9,7 +9,7 @@ import {
 import CryptoJS from "crypto-js";
 import "./entrypage.css";
 
-const Entry = () => {
+const Entry = ({ entries }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -49,7 +49,7 @@ const Entry = () => {
         setText(currEntry.text);
       }, wordCount * 50);
       // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IS PASSCODE IS WRONG
-      if (originalText == "") {
+      if (originalText === "") {
         setAttempts(attempts + 1);
         console.log(attempts);
         setError("wrong password");
@@ -80,7 +80,7 @@ const Entry = () => {
     <div className="entry-page">
       {user && (
         <div>
-          <h1>{currEntry.title}: </h1>
+          <h1>{currEntry.title} </h1>
           <div style={{}}>
             <br />
             {text} <br />

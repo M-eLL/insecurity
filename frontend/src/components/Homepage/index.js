@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 // import picture from "./simp.jpg";
 
 const Homepage = () => {
-  const userId = useParams();
+  // const userId = useParams();
   const user = useSelector((state) => {
     return state.session.user;
   });

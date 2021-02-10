@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getEntries, createEntry } from "../../store/entries";
-import CryptoJS from "crypto-js";
+// import CryptoJS from "crypto-js";
 import "./form.css";
 
 const EntryForm = () => {
@@ -14,18 +14,18 @@ const EntryForm = () => {
   const [password, setPassword] = useState("");
 
   const user = useSelector((state) => state.session.user);
-  const entries = useSelector((state) => state.entries);
+  // const entries = useSelector((state) => state.entries);
 
   useEffect(() => {
     dispatch(getEntries());
   }, [dispatch]);
 
-  const decryptWithAES = (ciphertext) => {
-    const passphrase = "persephone";
-    const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-    const originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return originalText;
-  };
+  // const decryptWithAES = (ciphertext) => {
+  //   const passphrase = "persephone";
+  //   const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+  //   const originalText = bytes.toString(CryptoJS.enc.Utf8);
+  //   return originalText;
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
