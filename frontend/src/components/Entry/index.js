@@ -36,17 +36,20 @@ const Entry = () => {
     let originalText = "NOPE";
     try {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
-      if (originalText.split(" ").length > 5) {
-        return "more than 5 words";
-      }
-      if (originalText.split(" ").length === 3) {
-        return "this is cool";
-      }
+      // if (originalText.split(" ").length > 5) {
+      //   return "more than 5 words";
+      // }
+      // if (originalText.split(" ").length === 3) {
+      //   return "this is cool";
+      // }
+      console.log(originalText.split(" ").length);
       return originalText;
     } catch {
       return originalText;
     }
   };
+
+  // 250 words per minute => 4 words per second => 1 word per 250 ms
 
   const editHandler = () => {
     dispatch(editOneEntry(entryId, title));
