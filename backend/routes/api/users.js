@@ -82,6 +82,7 @@ router.delete(
   })
 );
 
+
 // post an encryted entry
 router.post(
   "/:id/entries",
@@ -111,38 +112,12 @@ router.put(
   asyncHandler(async (req, res) => {
     const entryId = req.params.entryId;
     const { title } = req.body;
-    console.log(req.body);
 
     const entry = await Entry.findByPk(parseInt(entryId));
 
     await entry.update({ title: title });
-    console.log(entry);
     return res.json({ entry });
   })
 );
-
-// router.put(
-//   "/entries/:entryId",
-//   restoreUser,
-//   asyncHandler(async (req, res) => {
-//     // const entryId = req.params.entryId;
-//     const { text, title, encryption_key } = req.body;
-//     console.log(req.body);
-//     const encryptedEntry = (text) => {
-//       const passphrase = "persephone";
-//       return CryptoJS.AES.encrypt(text, encryption_key).toString();
-//     };
-//     const encryptedText = encryptedEntry(text);
-//     const entry = await Entry.findByPk(parseInt(entryId));
-
-//     await entry.update({
-//       title: title,
-//       text: encryptedText,
-//       entryId: req.params.entryId,
-//     });
-//     console.log(entry);
-//     return res.json({ entry });
-//   })
-// );
 
 module.exports = router;

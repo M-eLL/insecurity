@@ -1,6 +1,23 @@
 .entry-page {
-  /* display: flex;
-  justify-content: center; */
   text-align: center;
   background-color: rgb(20, 6, 21);
+}
+
+.error {
+  text-align: center;
+  background-color: rgb(20, 6, 21);
+  width: 100vmax;
+  height: 100vmax;
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    background-color: red;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    background-color: black;
+  }
 }
