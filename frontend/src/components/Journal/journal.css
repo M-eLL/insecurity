@@ -5,7 +5,14 @@
   text-align: center;
   /* box-shadow: 2px 7px 5px -4px rgb(246, 146, 255), 0px -4px 10px rgb(76, 21, 81); */
   margin: 20px auto;
-  width: 700px;
+  /* width: 700px; */
   padding: 5px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  /* border-bottom: 1px solid white;
+  border-right: 1px solid white; */
+}
+.entries-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

@@ -82,7 +82,7 @@ const Entry = () => {
     <div className="entry-page">
       {user && (
         <div>
-          <h1>{currEntry.title}: </h1>
+          <h1>{currEntry.title} </h1>
           <div style={{}}>
             <br />
             {text} <br />

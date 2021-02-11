@@ -1,7 +1,7 @@
 .textarea {
-  min-height: 20em;
-  min-width: 40em;
-  font-size: 15px;
+  min-height: 15em;
+  min-width: 30em;
+  font-size: 20px;
   font-weight: lighter;
   color: chartreuse;
 }

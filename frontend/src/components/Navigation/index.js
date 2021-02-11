@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to="/entries">your encrypted entries</NavLink>
+        <NavLink to="/entries">journal</NavLink>
         <NavLink to="/entries/new">write a new encrypted entry</NavLink>
         <ProfileButton user={sessionUser} />
       </>

@@ -37,6 +37,9 @@ const EntryForm = () => {
       encryption_key: password,
     };
     console.log(newEntry);
+    setTitle("");
+    setText("");
+    setPassword("");
     dispatch(createEntry(newEntry));
 
     history.push("/entries");
