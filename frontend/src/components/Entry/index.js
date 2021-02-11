@@ -33,9 +33,11 @@ const Entry = () => {
     dispatch(getOneEntry(entryId));
   }, [entryId, dispatch]);
 
+  // after a certain number of attempts trigger "delete"
   useEffect(() => {
-    if (attempts >= 4) {
-      console.log("delete");
+    if (attempts >= 3) {
+      dispatch(deleteOneEntry(entryId));
+      history.push("/entries");
     }
   }, [attempts]);
 
@@ -59,7 +61,7 @@ const Entry = () => {
       return originalText;
     } catch (e) {
       // UTF8 ERROR HANDLING
-      setError("whoops");
+      setError("THIS IS A UTF8 ERROR");
       // SET THIS AS A CLASS TO ALTER VISUAL EFFECTS OF AN ERROR
       setErrorClass("error");
       return originalText;
