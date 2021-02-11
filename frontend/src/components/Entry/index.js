@@ -19,7 +19,7 @@ const Entry = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState("");
-  const [errorClass, setErrorClass] = useState("");
+  const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
 
   const user = useSelector((state) => state.session.user);
@@ -57,6 +57,7 @@ const Entry = () => {
         setError("wrong password");
       } else {
         setAttempts(0);
+        setErrorClass("entry-page");
       }
       return originalText;
     } catch (e) {
@@ -79,10 +80,10 @@ const Entry = () => {
   };
 
   return (
-    <div className="entry-page">
+    <div className={errorClass}>
       {user && (
         <div>
-          <h1>{currEntry.title}: </h1>
+          <h1>{currEntry.title} </h1>
           <div style={{}}>
             <br />
             {text} <br />
@@ -116,13 +117,6 @@ const Entry = () => {
                 placeholder="TITLE"
               />
               <button onClick={editHandler}>edit</button>
-              {/* <br />
-              <input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="TEXT"
-              />
-              <button onClick={editHandler}>edit</button> */}
               <br />
               <br />
               <br />
@@ -135,6 +129,11 @@ const Entry = () => {
           </div>
         </div>
       )}
+      {/* {error && (
+        <div className="error">
+          <h1>NO NO NO</h1>
+        </div>
+      )} */}
     </div>
   );
 };
