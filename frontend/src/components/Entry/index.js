@@ -84,7 +84,7 @@ const Entry = () => {
       {user && (
         <div>
           <h1>{currEntry.title} </h1>
-          <div style={{}}>
+          <div className="decrypted-entry">
             <br />
             {text} <br />
           </div>
