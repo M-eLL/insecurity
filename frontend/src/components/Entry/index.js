@@ -22,7 +22,8 @@ const Entry = () => {
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
   const [lock, setLock] = useState(true);
-  
+  const [panicCode, setPanicCode] = useState("");
+
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
 
@@ -81,22 +82,36 @@ const Entry = () => {
     history.push("/entries");
   };
 
+  const panicHandler = () => {
+    setLock(true);
+    setAttempts(0);
+    setErrorClass("entry-page");
+    console.log("UNLOCKING");
+  };
+
   return (
     <div className={errorClass}>
       <div>
         {lock === false && (
-          <button
-            className="panic-button"
-            value={lock}
-            onClick={() => {
-              setLock(true);
-              setAttempts(0);
-              setErrorClass("entry-page");
-              console.log("UNLOCKING");
-            }}
-          >
-            <i className="fas fa-lock"></i> THIS IS LOCKED
-          </button>
+          <div>
+            <input
+              type="password"
+              value={panicCode}
+              onChange={(e) => setPanicCode(e.target.value)}
+              placeholder="panicCode"
+            ></input>
+            <button
+              className="panic-button"
+              value={lock}
+              onClick={() => {
+                {
+                  panicHandler();
+                }
+              }}
+            >
+              <i className="fas fa-lock"></i> THIS IS LOCKED
+            </button>
+          </div>
         )}
         {lock === true && (
           <div className={errorClass}>
