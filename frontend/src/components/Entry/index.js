@@ -50,7 +50,8 @@ const Entry = () => {
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
-    let originalText = "NOPE";
+    // let originalText = "NOPE";
+    let originalText;
     try {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
       let wordCount = originalText.split("").length;
@@ -72,7 +73,11 @@ const Entry = () => {
       // setError("THIS IS A UTF8 ERROR");
       // SET THIS AS A CLASS TO ALTER VISUAL EFFECTS OF AN ERROR
       // setErrorClass("error");
-      return originalText;
+      setAttempts(attempts + 1);
+      console.log(attempts);
+      setError("wrong password");
+      // originalText = "Please enter the correct passphrase";
+      // return originalText;
     }
   };
 
