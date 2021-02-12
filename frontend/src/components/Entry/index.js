@@ -22,10 +22,7 @@ const Entry = () => {
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
   const [lock, setLock] = useState(true);
-  // const [unlocked, setLock] = useState(
-  //   useSelector((state) => state.currentEntry.locked)
-  // );
-
+  
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
 
@@ -37,10 +34,9 @@ const Entry = () => {
     dispatch(getOneEntry(entryId));
   }, [entryId, dispatch]);
 
-  // after a certain number of attempts trigger "delete"
+  // after a certain number of attempts trigger "panic"
   useEffect(() => {
     if (attempts >= 3) {
-      // dispatch(deleteOneEntry(entryId));
       console.log("LOCKING");
       setErrorClass("error");
       setLock(false);
@@ -50,14 +46,14 @@ const Entry = () => {
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
-    let originalText = "NOPE";
+    let originalText;
     try {
       originalText = bytes.toString(CryptoJS.enc.Utf8);
       let wordCount = originalText.split("").length;
       setTimeout(function () {
         setText(currEntry.text);
       }, wordCount * 50);
-      // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IS PASSCODE IS WRONG
+      // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IF PASSCODE IS WRONG
       if (originalText == "") {
         setAttempts(attempts + 1);
         console.log(attempts);
@@ -69,10 +65,9 @@ const Entry = () => {
       return originalText;
     } catch (e) {
       // UTF8 ERROR HANDLING
-      // setError("THIS IS A UTF8 ERROR");
-      // SET THIS AS A CLASS TO ALTER VISUAL EFFECTS OF AN ERROR
-      // setErrorClass("error");
-      return originalText;
+      setAttempts(attempts + 1);
+      console.log(attempts);
+      setError("wrong password");
     }
   };
 
