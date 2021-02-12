@@ -21,6 +21,10 @@ const Entry = () => {
   const [error, setError] = useState("");
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
+  const [lock, setLock] = useState(false);
+  // const [unlocked, setLock] = useState(
+  //   useSelector((state) => state.currentEntry.locked)
+  // );
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
@@ -36,8 +40,10 @@ const Entry = () => {
   // after a certain number of attempts trigger "delete"
   useEffect(() => {
     if (attempts >= 3) {
-      dispatch(deleteOneEntry(entryId));
-      history.push("/entries");
+      // dispatch(deleteOneEntry(entryId));
+
+      setLock(false);
+      history.push("/entries/entryId");
     }
   }, [attempts]);
 
@@ -81,59 +87,73 @@ const Entry = () => {
 
   return (
     <div className={errorClass}>
-      {user && (
-        <div>
-          <h1>{currEntry.title} </h1>
-          <div className="decrypted-entry">
-            <br />
-            {text} <br />
-          </div>
-          <br />
-          show msg?
-          <div>
-            <input
-              type="password"
-              value={passphrase}
-              onChange={(e) => setPassphrase(e.target.value)}
-              placeholder="passphrase"
-            ></input>
-            <button
+      <div>
+        {currEntry.title}{" "}
+        {lock === false && (
+          <button
+            value={lock}
+            onClick={() => {
+              setLock(true);
+              console.log("UNLOCKING");
+            }}
+          >
+            <i class="fas fa-lock"></i> THIS IS LOCKED
+          </button>
+        )}
+        {lock === true && (
+          <>
+            {/* <button
+              value={lock}
               onClick={() => {
-                const decryptedText = decryptWithAES();
-                setText(decryptedText);
+                setLock(false);
+                console.log("LOCKING UP");
               }}
             >
-              decrypt message
-            </button>
-            <br />
-            <div className={errorClass}>{error}</div>
-            <br />
-            <br />
-            <label>
-              change things <br />
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="TITLE"
-              />
-              <button onClick={editHandler}>edit</button>
+              <i className="fas fa-lock-open"></i> NOT LOCKED
+            </button> */}
+            <div className="">
+              <div>{text}</div>
               <br />
-              <br />
-              <br />
-              deletee entry?
-              <br />
-              <button style={{ color: "red" }} onClick={deleteHandler}>
-                delete
-              </button>
-            </label>
-          </div>
-        </div>
-      )}
-      {/* {error && (
-        <div className="error">
-          <h1>NO NO NO</h1>
-        </div>
-      )} */}
+              <div>
+                <input
+                  type="password"
+                  value={passphrase}
+                  onChange={(e) => setPassphrase(e.target.value)}
+                  placeholder="passphrase"
+                ></input>
+                <button
+                  onClick={() => {
+                    const decryptedText = decryptWithAES();
+                    setText(decryptedText);
+                  }}
+                >
+                  decrypt message
+                </button>
+                <br />
+                <div className={errorClass}>{error}</div>
+                <br />
+                <br />
+                <label>
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="TITLE"
+                  />
+                  <button onClick={editHandler}>edit</button>
+                  <br />
+                  <br />
+                  <br />
+                  delete entry?
+                  <br />
+                  <button style={{ color: "red" }} onClick={deleteHandler}>
+                    delete
+                  </button>
+                </label>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
