@@ -82,7 +82,6 @@ router.delete(
   })
 );
 
-
 // post an encryted entry
 router.post(
   "/:id/entries",
@@ -99,6 +98,7 @@ router.post(
       title,
       userId: req.params.id,
       text: encryptedText,
+      // locked: false,
     });
 
     return res.json({ entry });
