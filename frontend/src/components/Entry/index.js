@@ -41,7 +41,7 @@ const Entry = () => {
   useEffect(() => {
     if (attempts >= 3) {
       // dispatch(deleteOneEntry(entryId));
-
+      console.log("LOCKING");
       setLock(false);
       history.push("/entries/entryId");
     }
@@ -94,6 +94,7 @@ const Entry = () => {
             value={lock}
             onClick={() => {
               setLock(true);
+              setAttempts(0);
               console.log("UNLOCKING");
             }}
           >
@@ -101,57 +102,46 @@ const Entry = () => {
           </button>
         )}
         {lock === true && (
-          <>
-            {/* <button
-              value={lock}
-              onClick={() => {
-                setLock(false);
-                console.log("LOCKING UP");
-              }}
-            >
-              <i className="fas fa-lock-open"></i> NOT LOCKED
-            </button> */}
-            <div className="">
-              <div>{text}</div>
+          <div className={errorClass}>
+            <div>{text}</div>
+            <br />
+            <div>
+              <input
+                type="password"
+                value={passphrase}
+                onChange={(e) => setPassphrase(e.target.value)}
+                placeholder="passphrase"
+              ></input>
+              <button
+                onClick={() => {
+                  const decryptedText = decryptWithAES();
+                  setText(decryptedText);
+                }}
+              >
+                decrypt message
+              </button>
               <br />
-              <div>
+              <div className={errorClass}>{error}</div>
+              <br />
+              <br />
+              <label>
                 <input
-                  type="password"
-                  value={passphrase}
-                  onChange={(e) => setPassphrase(e.target.value)}
-                  placeholder="passphrase"
-                ></input>
-                <button
-                  onClick={() => {
-                    const decryptedText = decryptWithAES();
-                    setText(decryptedText);
-                  }}
-                >
-                  decrypt message
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="TITLE"
+                />
+                <button onClick={editHandler}>edit</button>
+                <br />
+                <br />
+                <br />
+                delete entry?
+                <br />
+                <button style={{ color: "red" }} onClick={deleteHandler}>
+                  delete
                 </button>
-                <br />
-                <div className={errorClass}>{error}</div>
-                <br />
-                <br />
-                <label>
-                  <input
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="TITLE"
-                  />
-                  <button onClick={editHandler}>edit</button>
-                  <br />
-                  <br />
-                  <br />
-                  delete entry?
-                  <br />
-                  <button style={{ color: "red" }} onClick={deleteHandler}>
-                    delete
-                  </button>
-                </label>
-              </div>
+              </label>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
