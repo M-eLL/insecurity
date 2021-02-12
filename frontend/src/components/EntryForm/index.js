@@ -55,13 +55,35 @@ const EntryForm = () => {
             placeholder="Title"
           />
           <br />
+          <div className="text-area">
+            <header className="text-area-header">
+              <span className="Controls">
+                <button>
+                  <strong>B</strong>
+                </button>
+                <button>
+                  <em>I</em>
+                </button>
+                <button>
+                  <u>U</u>
+                </button>
+              </span>
+              <textarea
+                rows="5"
+                className="Text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="WRITE SOMETHING"
+              />
+            </header>
+          </div>
           <br />
-          <textarea
+          {/* <textarea
             className="textarea"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="WRITE SOMETHING"
-          ></textarea>
+          ></textarea> */}
           <br />
           <br />
           passphrase:{" "}

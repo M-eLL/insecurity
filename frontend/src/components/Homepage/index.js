@@ -1,7 +1,7 @@
 import "./homepage.css";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-// import picture from "./simp.jpg";
+import picture from "./brain.jpg";
 
 const Homepage = () => {
   const userId = useParams();
@@ -12,6 +12,7 @@ const Homepage = () => {
   return (
     <div>
       <div id="header">
+        <img src={picture} />
         <h1 id="logo-font">IN.SECURITY</h1>
       </div>
       <div className="home-body">
