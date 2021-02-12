@@ -13,10 +13,16 @@
 }
 
 .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
   text-align: center;
   background-color: rgb(20, 6, 21);
-  width: 100vmax;
-  height: 100vmax;
+  width: 100vw;
+  height: 100vh;
   animation: blink-animation 1s steps(5, start) infinite;
   -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
@@ -29,4 +35,8 @@
   to {
     background-color: black;
   }
+}
+
+.panic-button {
+  margin: 0 auto;
 }

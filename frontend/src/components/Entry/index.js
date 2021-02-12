@@ -21,7 +21,7 @@ const Entry = () => {
   const [error, setError] = useState("");
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
-  const [lock, setLock] = useState(false);
+  const [lock, setLock] = useState(true);
   // const [unlocked, setLock] = useState(
   //   useSelector((state) => state.currentEntry.locked)
   // );
@@ -42,8 +42,9 @@ const Entry = () => {
     if (attempts >= 3) {
       // dispatch(deleteOneEntry(entryId));
       console.log("LOCKING");
+      setErrorClass("error");
       setLock(false);
-      history.push("/entries/entryId");
+      history.push(`/entries/${currEntry.id}`);
     }
   }, [attempts]);
 
@@ -68,9 +69,9 @@ const Entry = () => {
       return originalText;
     } catch (e) {
       // UTF8 ERROR HANDLING
-      setError("THIS IS A UTF8 ERROR");
+      // setError("THIS IS A UTF8 ERROR");
       // SET THIS AS A CLASS TO ALTER VISUAL EFFECTS OF AN ERROR
-      setErrorClass("error");
+      // setErrorClass("error");
       return originalText;
     }
   };
@@ -88,21 +89,23 @@ const Entry = () => {
   return (
     <div className={errorClass}>
       <div>
-        {currEntry.title}{" "}
         {lock === false && (
           <button
+            className="panic-button"
             value={lock}
             onClick={() => {
               setLock(true);
               setAttempts(0);
+              setErrorClass("entry-page");
               console.log("UNLOCKING");
             }}
           >
-            <i class="fas fa-lock"></i> THIS IS LOCKED
+            <i className="fas fa-lock"></i> THIS IS LOCKED
           </button>
         )}
         {lock === true && (
           <div className={errorClass}>
+            <h1>{currEntry.title}</h1>
             <div>{text}</div>
             <br />
             <div>
