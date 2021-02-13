@@ -30,6 +30,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     history.push("/");
+    window.location.reload();
   };
 
   return (

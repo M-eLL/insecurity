@@ -13,12 +13,13 @@ const Homepage = () => {
     return state.session.user;
   });
 
-  const values = [
-    "IN.SECURITY",
-    "ECRYPTION-PROTECTED",
-    "JOURNALING APP",
-    "4 UR EYES ONLY",
-  ];
+  let values;
+  if (!user) {
+    values = ["WELCOME TO", "IN.SECURITY", "WHO R U"];
+  }
+  if (user) {
+    values = [`welcome back`, `missed u`];
+  }
 
   useEffect(() => {
     let i = 0;
@@ -26,8 +27,14 @@ const Homepage = () => {
     const action = setInterval(() => {
       dencrypt(values[i]);
 
+      // if (i === values.length - 1) {
+      //   i = 0;
+      // } else {
+      //   i = i + 1;
+      // }
+
       i = i === values.length - 1 ? 0 : i + 1;
-    }, 2250);
+    }, 3500);
 
     return () => clearInterval(action);
   }, []);
