@@ -5,6 +5,7 @@ import {
   getOneEntry,
   deleteOneEntry,
   editOneEntry,
+  hideEntry,
 } from "../../store/currentEntry";
 import * as sessionActions from "../../store/session";
 import CryptoJS from "crypto-js";
@@ -26,7 +27,10 @@ const Entry = () => {
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
-  const [lock, setLock] = useState(currEntry.locked);
+  const locked = useSelector((state) => state.currentEntry.locked);
+  const [lockedState, setLockedState] = useState(locked);
+
+  console.log(locked);
 
   useEffect(() => {
     setText(currEntry.text);
@@ -41,7 +45,8 @@ const Entry = () => {
     if (attempts >= 3) {
       console.log("LOCKING");
       setErrorClass("error");
-      setLock(false);
+      // setLock(false);
+      dispatch(hideEntry(locked));
       history.push(`/entries/${currEntry.id}`);
     }
   }, [attempts]);
@@ -89,7 +94,7 @@ const Entry = () => {
         sessionActions.validatePassword({ credential: user.email, password })
       )
     ) {
-      setLock(true);
+      dispatch(hideEntry(locked));
       setAttempts(0);
       setErrorClass("entry-page");
       console.log("UNLOCKING");
@@ -99,7 +104,7 @@ const Entry = () => {
   return (
     <div className={errorClass}>
       <div>
-        {lock === false && (
+        {locked === true && (
           <div>
             <label>
               Password
@@ -113,7 +118,7 @@ const Entry = () => {
             <br />
             <button
               className="panic-button"
-              value={lock}
+              value={locked}
               onClick={() => {
                 {
                   panicHandler();
@@ -124,7 +129,7 @@ const Entry = () => {
             </button>
           </div>
         )}
-        {lock === true && (
+        {locked === false && (
           <div className={errorClass}>
             <h1>{currEntry.title}</h1>
             <div>{text}</div>

@@ -87,7 +87,7 @@ router.post(
   "/:id/entries",
   restoreUser,
   asyncHandler(async (req, res) => {
-    const { text, title, encryption_key } = req.body;
+    const { text, title, encryption_key, locked } = req.body;
     console.log(req.body);
     const encryptedEntry = (text) => {
       const passphrase = "persephone";
@@ -98,7 +98,7 @@ router.post(
       title,
       userId: req.params.id,
       text: encryptedText,
-      locked: false,
+      locked,
     });
 
     return res.json({ entry });
@@ -116,6 +116,23 @@ router.put(
     const entry = await Entry.findByPk(parseInt(entryId));
 
     await entry.update({ title: title });
+    return res.json({ entry });
+  })
+);
+
+// edit an entry
+router.patch(
+  "/entries/:entryId",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    let { locked } = req.body;
+
+    const entry = await Entry.findByPk(parseInt(entryId));
+    locked = entry.locked;
+    console.log("!!!!!!!!!!!!!!!!!", locked);
+
+    await entry.update({ locked: !locked });
     return res.json({ entry });
   })
 );

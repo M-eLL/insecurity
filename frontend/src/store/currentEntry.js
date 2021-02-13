@@ -3,6 +3,7 @@ import { fetch } from "./csrf.js";
 const GET_ENTRY = "entry/setEntry";
 const DELETE_ENTRY = "entry/deleteEntry";
 const EDIT_ENTRY = "entry/editEntry";
+const LOCK_ENTRY = "entry/lockEntry";
 
 const setEntry = (payload) => ({
   type: GET_ENTRY,
@@ -16,6 +17,11 @@ const deleteEntry = (payload) => ({
 
 const editEntry = (payload) => ({
   type: EDIT_ENTRY,
+  payload,
+});
+
+const lockEntry = (payload) => ({
+  type: LOCK_ENTRY,
   payload,
 });
 
@@ -46,20 +52,17 @@ export const editOneEntry = (entryId, title) => async (dispatch) => {
   dispatch(editEntry(entry));
 };
 
-// export const editOneEntry = (entry) => async (dispatch) => {
-//   const { title, text, encryption_key, entryId } = entry;
-//   const response = await fetch(`/api/users/entries/${entryId}`, {
-//     method: "PUT",
-//     body: JSON.stringify({
-//       title,
-//       text,
-//       encryption_key,
-//     }),
-//   });
-//   const newEntry = response.data;
-//   console.log(newEntry);
-//   dispatch(editEntry(newEntry));
-// };
+export const hideEntry = (entryId, locked) => async (dispatch) => {
+  const response = await fetch(`/api/users/entries/${entryId}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      locked,
+    }),
+  });
+  const entry = response.data;
+  console.log(entry);
+  dispatch(lockEntry(entry));
+};
 
 const initState = {};
 
@@ -74,6 +77,9 @@ const reducer = (state = initState, action) => {
       newState = action.payload;
       return { ...newState };
     case EDIT_ENTRY:
+      newState = action.payload;
+      return { ...newState };
+    case LOCK_ENTRY:
       newState = action.payload;
       return { ...newState };
     default:
