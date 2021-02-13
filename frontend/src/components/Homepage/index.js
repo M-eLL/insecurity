@@ -1,18 +1,42 @@
 import "./homepage.css";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
+import { useDencrypt } from "use-dencrypt-effect";
 // import picture from "./simp.jpg";
 
 const Homepage = () => {
   const userId = useParams();
+  const { result, dencrypt } = useDencrypt();
+
   const user = useSelector((state) => {
     return state.session.user;
   });
 
+  const values = [
+    "IN.SECURITY",
+    "ECRYPTION-PROTECTED",
+    "JOURNALING APP",
+    "4 UR EYES ONLY",
+  ];
+
+  useEffect(() => {
+    let i = 0;
+
+    const action = setInterval(() => {
+      dencrypt(values[i]);
+
+      i = i === values.length - 1 ? 0 : i + 1;
+    }, 2250);
+
+    return () => clearInterval(action);
+  }, []);
+
   return (
     <div>
       <div id="header">
-        <h1 id="logo-font">IN.SECURITY</h1>
+        {/* <h1 id="logo-font">IN.SECURITY</h1> */}
+        <h1 id="logo-font">{result}</h1>
       </div>
       <div className="home-body">
         {!user && (
