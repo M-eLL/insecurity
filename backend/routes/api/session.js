@@ -47,7 +47,6 @@ router.post(
 // validate password
 router.post(
   "/validate",
-  validateLogin,
   asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
 

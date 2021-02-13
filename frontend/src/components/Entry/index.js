@@ -23,10 +23,11 @@ const Entry = () => {
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
   const [password, setPassword] = useState("");
+  const [lock, setLock] = useState(true);
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
-  const [lock, setLock] = useState(currEntry.locked);
+  // const [lock, setLock] = useState(currEntry.locked);
 
   useEffect(() => {
     setText(currEntry.text);
@@ -86,13 +87,19 @@ const Entry = () => {
   const panicHandler = () => {
     if (
       dispatch(
-        sessionActions.validatePassword({ credential: user.email, password })
+        sessionActions.validatePassword({
+          credential: user.email,
+          password,
+        })
       )
+      // ) === true
     ) {
       setLock(true);
       setAttempts(0);
       setErrorClass("entry-page");
       console.log("UNLOCKING");
+    } else {
+      console.log("NO THAT'S WRONG");
     }
   };
 
@@ -120,7 +127,7 @@ const Entry = () => {
                 }
               }}
             >
-              <i class="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
+              <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
             </button>
           </div>
         )}
