@@ -98,7 +98,7 @@ router.post(
       title,
       userId: req.params.id,
       text: encryptedText,
-      // locked: false,
+      locked: false,
     });
 
     return res.json({ entry });
