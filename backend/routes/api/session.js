@@ -21,7 +21,7 @@ const validateLogin = [
 
 // Log in
 router.post(
-  '/',
+  "/",
   validateLogin,
   asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
@@ -29,10 +29,10 @@ router.post(
     const user = await User.login({ credential, password });
 
     if (!user) {
-      const err = new Error('Login failed');
+      const err = new Error("Login failed");
       err.status = 401;
-      err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
+      err.title = "Login failed";
+      err.errors = ["The provided credentials were invalid."];
       return next(err);
     }
 
@@ -41,30 +41,38 @@ router.post(
     return res.json({
       user,
     });
-  }),
+  })
+);
+
+// validate password
+router.post(
+  "/validate",
+  validateLogin,
+  asyncHandler(async (req, res, next) => {
+    const { credential, password } = req.body;
+
+    const result = await User.verifyPassword({ credential, password });
+
+    return res.json({
+      result,
+    });
+  })
 );
 
 // Log out
-router.delete(
-  '/',
-  (_req, res) => {
-    res.clearCookie('token');
-    return res.json({ message: 'success' });
-  }
-);
+router.delete("/", (_req, res) => {
+  res.clearCookie("token");
+  return res.json({ message: "success" });
+});
 
 // Restore session user
-router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
-);
+router.get("/", restoreUser, (req, res) => {
+  const { user } = req;
+  if (user) {
+    return res.json({
+      user: user.toSafeObject(),
+    });
+  } else return res.json({});
+});
 
 module.exports = router;

@@ -82,6 +82,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
+  User.verifyPassword = async function ({ credential, password }) {
+    const { Op } = require("sequelize");
+    const user = await User.scope("loginUser").findOne({
+      where: {
+        [Op.or]: {
+          username: credential,
+          email: credential,
+        },
+      },
+    });
+    return user.validatePassword(password);
+  };
+
   User.signup = async function ({ username, email, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({

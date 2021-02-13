@@ -6,6 +6,7 @@ import {
   deleteOneEntry,
   editOneEntry,
 } from "../../store/currentEntry";
+import * as sessionActions from "../../store/session";
 import CryptoJS from "crypto-js";
 import "./entrypage.css";
 
@@ -21,11 +22,11 @@ const Entry = () => {
   const [error, setError] = useState("");
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
-  const [lock, setLock] = useState(true);
-  const [panicCode, setPanicCode] = useState("");
+  const [password, setPassword] = useState("");
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
+  const [lock, setLock] = useState(currEntry.locked);
 
   useEffect(() => {
     setText(currEntry.text);
@@ -83,10 +84,16 @@ const Entry = () => {
   };
 
   const panicHandler = () => {
-    setLock(true);
-    setAttempts(0);
-    setErrorClass("entry-page");
-    console.log("UNLOCKING");
+    if (
+      dispatch(
+        sessionActions.validatePassword({ credential: user.email, password })
+      )
+    ) {
+      setLock(true);
+      setAttempts(0);
+      setErrorClass("entry-page");
+      console.log("UNLOCKING");
+    }
   };
 
   return (
@@ -94,12 +101,16 @@ const Entry = () => {
       <div>
         {lock === false && (
           <div>
-            <input
-              type="password"
-              value={panicCode}
-              onChange={(e) => setPanicCode(e.target.value)}
-              placeholder="panicCode"
-            ></input>
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            <br />
             <button
               className="panic-button"
               value={lock}
@@ -109,7 +120,7 @@ const Entry = () => {
                 }
               }}
             >
-              <i className="fas fa-lock"></i> THIS IS LOCKED
+              <i class="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
             </button>
           </div>
         )}
