@@ -1,13 +1,18 @@
 import "./homepage.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
+import LoginForm from "../LoginFormModal/LoginForm";
 import { useDencrypt } from "use-dencrypt-effect";
+
+import { Modal } from "../../context/Modal";
 // import picture from "./simp.jpg";
 
 const Homepage = () => {
   const userId = useParams();
   const { result, dencrypt } = useDencrypt();
+
+  const [showModal, setShowModal] = useState(false);
 
   const user = useSelector((state) => {
     return state.session.user;
@@ -34,37 +39,52 @@ const Homepage = () => {
       // }
 
       i = i === values.length - 1 ? 0 : i + 1;
-    }, 3500);
+    }, 3000);
 
     return () => clearInterval(action);
   }, []);
 
   return (
     <div>
-      <div id="header">
-        {/* <h1 id="logo-font">IN.SECURITY</h1> */}
-        <h1 id="logo-font">{result}</h1>
-      </div>
-      <div className="home-body">
-        {!user && (
-          <div>
-            {/* WELCOME TO in.security */}
-            {/* <p>yo who r u</p> */}
-            {/* <Link to={`/entries`}>Go to journal</Link> */}
-          </div>
-        )}
-        {user && (
-          <div>
-            <h2>Welcome back, {user.username}.</h2>
-            <Link to={`/entries/new`}>
-              <button className="button">new entry</button>
-            </Link>
-            <Link to={`/entries`}>
-              <button className="button">view entries</button>
-            </Link>
-          </div>
-        )}
-      </div>
+      <>
+        <div className="home-body">
+          {!user && (
+            <>
+              <div id="header">
+                <h1 id="logo-font">{result}</h1>
+              </div>
+              <h1>PLEASE LOG IN OR SIGN UP</h1>
+              <Link>
+                <button className="button" onClick={() => setShowModal(true)}>
+                  Log In
+                </button>
+                {showModal && (
+                  <Modal onClose={() => setShowModal(false)}>
+                    <LoginForm />
+                  </Modal>
+                )}
+              </Link>
+              <Link to={`/signup`}>
+                <button className="button">SIGN UP</button>
+              </Link>
+            </>
+          )}
+          {user && (
+            <div>
+              <div id="header">
+                <h1 id="logo-font">{result}</h1>
+              </div>
+              {/* <h2>Welcome back, {user.username}.</h2> */}
+              <Link to={`/entries/new`}>
+                <button className="button">new entry</button>
+              </Link>
+              <Link to={`/entries`}>
+                <button className="button">view entries</button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </>
     </div>
   );
 };
