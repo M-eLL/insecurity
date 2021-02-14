@@ -57,7 +57,7 @@ const Entry = () => {
         setText(currEntry.text);
       }, wordCount * 75);
       // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IF PASSCODE IS WRONG
-      if (originalText == "") {
+      if (originalText === "") {
         setAttempts(attempts + 1);
         console.log(attempts);
         setError("wrong password");
