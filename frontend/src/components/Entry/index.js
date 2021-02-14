@@ -55,7 +55,7 @@ const Entry = () => {
       let wordCount = originalText.split("").length;
       setTimeout(function () {
         setText(currEntry.text);
-      }, wordCount * 50);
+      }, wordCount * 75);
       // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IF PASSCODE IS WRONG
       if (originalText == "") {
         setAttempts(attempts + 1);
@@ -84,21 +84,26 @@ const Entry = () => {
     history.push("/entries");
   };
 
-  const panicHandler = () => {
-    if (
-      dispatch(
-        sessionActions.validatePassword({
-          credential: user.email,
-          password,
-        })
-      )
+  const panicHandler = async () => {
+    let res = await dispatch(
+      sessionActions.validatePassword({
+        credential: user.email,
+        password,
+      })
+    );
+    console.log("!!!!!!!!!!!", res.data.result);
+    // let res = await Promise.resolve;
+    try {
       // ) === true
-    ) {
-      setLock(true);
-      setAttempts(0);
-      setErrorClass("entry-page");
-      console.log("UNLOCKING");
-    } else {
+      if (res.data.result === true) {
+        setLock(true);
+        setAttempts(0);
+        setErrorClass("entry-page");
+        console.log("UNLOCKING");
+      } else {
+        console.log("NO THAT'S WRONG");
+      }
+    } catch {
       console.log("NO THAT'S WRONG");
     }
   };

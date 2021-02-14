@@ -18,7 +18,7 @@ const Homepage = () => {
     values = ["WELCOME TO", "IN.SECURITY", "WHO R U"];
   }
   if (user) {
-    values = [`welcome back`, `missed u`];
+    values = [`WELCOME BACK`, `${user.username}`];
   }
 
   useEffect(() => {
