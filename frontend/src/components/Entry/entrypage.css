@@ -4,7 +4,7 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(191, 115, 115, 0.516);
+  background-color: rgb(20, 6, 21);
 }
 
 .entry-page {
@@ -18,7 +18,7 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(191, 115, 115, 0.516);
+  background-color: rgb(20, 6, 21);
 }
 
 .error {
