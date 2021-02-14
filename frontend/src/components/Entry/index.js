@@ -92,9 +92,7 @@ const Entry = () => {
       })
     );
     console.log("!!!!!!!!!!!", res.data.result);
-    // let res = await Promise.resolve;
     try {
-      // ) === true
       if (res.data.result === true) {
         setLock(true);
         setAttempts(0);
@@ -139,7 +137,7 @@ const Entry = () => {
         {lock === true && (
           <div className={errorClass}>
             <h1>{currEntry.title}</h1>
-            <div>{text}</div>
+            <div className="entry-text">{text}</div>
             <br />
             <div>
               <input

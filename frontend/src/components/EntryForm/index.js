@@ -20,12 +20,12 @@ const EntryForm = () => {
     dispatch(getEntries());
   }, [dispatch]);
 
-  const decryptWithAES = (ciphertext) => {
-    const passphrase = "persephone";
-    const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-    const originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return originalText;
-  };
+  // const decryptWithAES = (ciphertext) => {
+  //   const passphrase = "persephone";
+  //   const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+  //   const originalText = bytes.toString(CryptoJS.enc.Utf8);
+  //   return originalText;
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -44,11 +44,13 @@ const EntryForm = () => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>this is the entry form component</h1>
+      <br />
+      <br />
       <form onSubmit={onSubmit}>
-        <div>
-          Title:{" "}
+        <h1>
+          TITLE:{" "}
           <input
+            className="input-area"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -60,19 +62,22 @@ const EntryForm = () => {
             className="textarea"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="WRITE SOMETHING"
+            placeholder="Write anything you want. Once you submit your entry, no one will be able
+        to decrypt it without each entry's unique passphrase."
           ></textarea>
           <br />
           <br />
-          passphrase:{" "}
+          PASSPHRASE:{" "}
           <input
+            className="input-area"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="password"
           ></input>
-          <button>submit</button>
-        </div>
+          <br />
+          <button className="blutton">submit</button>
+        </h1>
       </form>
     </div>
   );

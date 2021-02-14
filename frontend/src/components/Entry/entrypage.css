@@ -12,6 +12,15 @@
   background-color: rgb(20, 6, 21);
 }
 
+.entry-text {
+  border: 1px solid white;
+  word-wrap: break-word;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(191, 115, 115, 0.516);
+}
+
 .error {
   display: flex;
   justify-content: center;
