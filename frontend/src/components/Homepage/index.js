@@ -48,8 +48,8 @@ const Homepage = () => {
       <div className="home-body">
         {!user && (
           <div>
-            WELCOME TO in.security
-            <p>yo who r u</p>
+            {/* WELCOME TO in.security */}
+            {/* <p>yo who r u</p> */}
             {/* <Link to={`/entries`}>Go to journal</Link> */}
           </div>
         )}
