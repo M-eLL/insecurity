@@ -27,7 +27,10 @@ function LoginFormModal() {
               password: "password",
             })
           )
-            .then((res) => history.pushState("/"))
+            .then((res) => {
+              window.location.reload();
+              history.pushState("/");
+            })
             .catch((res) => {
               if (res.data && res.data.errors) setErrors(res.data.errors);
             });
