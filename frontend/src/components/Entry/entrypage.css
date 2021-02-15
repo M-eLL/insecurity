@@ -1,7 +1,6 @@
 .decrypted-entry {
-  box-shadow: 2px 3px 3px 1px rgb(255, 255, 158),
-    1px 0px 10px 5px rgb(119, 119, 83);
-  border: 1px solid white;
+  border: 1px solid #3f79bf;
+  box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
   word-wrap: break-word;
   max-width: 500px;
   margin: 0 auto;
@@ -16,9 +15,8 @@
 }
 
 .entry-text {
-  box-shadow: 2px 3px 3px 1px rgb(255, 255, 158),
-    1px 0px 10px 5px rgb(119, 119, 83);
-  border: 1px solid white;
+  border: 1px solid #3f79bf;
+  box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
   word-wrap: break-word;
   max-width: 500px;
   margin: 0 auto;
@@ -56,14 +54,3 @@
   margin: 0 auto;
 }
 
-.redutton {
-  min-width: 250px;
-  margin: 20px;
-  padding: 1em;
-  border: 1px solid rgb(255, 255, 158);
-  border-radius: 5px;
-  box-shadow: 2px 3px 3px 1px rgb(255, 255, 158),
-    1px 0px 10px 5px rgb(119, 119, 83);
-  text-transform: uppercase;
-  min-width: 400px;
-}

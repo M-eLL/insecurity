@@ -165,7 +165,7 @@ const Entry = () => {
               ></input>
               <br />
               <button
-                className="redutton"
+                className="blutton"
                 onClick={() => {
                   const decryptedText = decryptWithAES();
                   setText(decryptedText);
