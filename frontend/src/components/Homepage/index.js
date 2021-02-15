@@ -22,7 +22,11 @@ const Homepage = () => {
     values = ["ENCRYPTION", "PROTECTED", "JOURNALING"];
   }
   if (user) {
-    values = [`WELCOME BACK`, `${user.username}!`, `missed u 🥺🥺🥺`];
+    values = [
+      `WELCOME BACK`,
+      `${user.username}!`,
+      `LET'S WRITE SOME SECRETS`,
+    ];
   }
 
   useEffect(() => {
