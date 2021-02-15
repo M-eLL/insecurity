@@ -14,19 +14,17 @@ const Journal = () => {
     dispatch(getEntries());
   }, [dispatch]);
 
-  // how do i make the entry title change to the entry text just by clicking on it
-  // want to try useEffect
   return (
     <div>
       {user && (
         <div>
           <h1 style={{ textAlign: "center" }}>
-            these are your entries by title: encrypted text
+            these are your entries by title
           </h1>
           {Object.values(entries).map((entry) => (
             <Link key={entry.id} to={`/entries/${entry.id}`}>
               <div id="entries-list">
-                <div>{entry.title}:</div>"{entry.text}"
+                <div>{entry.title}</div>
               </div>
             </Link>
           ))}

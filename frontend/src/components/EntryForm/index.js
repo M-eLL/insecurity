@@ -20,12 +20,12 @@ const EntryForm = () => {
     dispatch(getEntries());
   }, [dispatch]);
 
-  const decryptWithAES = (ciphertext) => {
-    const passphrase = "persephone";
-    const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
-    const originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return originalText;
-  };
+  // const decryptWithAES = (ciphertext) => {
+  //   const passphrase = "persephone";
+  //   const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+  //   const originalText = bytes.toString(CryptoJS.enc.Utf8);
+  //   return originalText;
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -44,34 +44,51 @@ const EntryForm = () => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>this is the entry form component</h1>
+      <br />
+      <br />
       <form onSubmit={onSubmit}>
         <div>
-          Title:{" "}
           <input
+            className="input-area"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
+            placeholder="TITLE YOUR ENTRY."
           />
+          <p>
+            A HELPFUL TITLE THAT WILL HELP YOU REMEMBER THIS ENTRY'S UNIQUE
+            PASSPHRASE
+          </p>
+          <br />
           <br />
           <br />
           <textarea
             className="textarea"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="WRITE SOMETHING"
+            placeholder="Write anything you want. Once you submit your entry, no one will be able
+        to decrypt it without the entry's unique passphrase."
           ></textarea>
           <br />
           <br />
-          passphrase:{" "}
+          <br />
+          <br />
+          <br />
           <input
+            className="input-area"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="CHOOSE A PASSPHRASE."
           ></input>
-          <button>submit</button>
+          <p>
+            CHOOSE WISELY- LOSING THIS PASSPHRASE MEANS THAT YOU PERMANENTLY
+            LOSE ACCESS TO THIS ENTRY
+          </p>
+          <br />
+          <br />
+          <br />
+          <button className="blutton">submit</button>
         </div>
       </form>
     </div>

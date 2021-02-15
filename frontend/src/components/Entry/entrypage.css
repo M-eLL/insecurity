@@ -1,15 +1,30 @@
 .decrypted-entry {
+  box-shadow: 2px 3px 3px 1px rgb(255, 255, 158),
+    1px 0px 10px 5px rgb(119, 119, 83);
   border: 1px solid white;
   word-wrap: break-word;
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(191, 115, 115, 0.516);
+  background-color: rgb(20, 6, 21);
+  border-radius: 5px;
 }
 
 .entry-page {
   text-align: center;
   background-color: rgb(20, 6, 21);
+}
+
+.entry-text {
+  box-shadow: 2px 3px 3px 1px rgb(255, 255, 158),
+    1px 0px 10px 5px rgb(119, 119, 83);
+  border: 1px solid white;
+  word-wrap: break-word;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(20, 6, 21);
+  border-radius: 5px;
 }
 
 .error {
@@ -39,4 +54,16 @@
 
 .panic-button {
   margin: 0 auto;
+}
+
+.redutton {
+  min-width: 250px;
+  margin: 20px;
+  padding: 1em;
+  border: 1px solid rgb(255, 255, 158);
+  border-radius: 5px;
+  box-shadow: 2px 3px 3px 1px rgb(255, 255, 158),
+    1px 0px 10px 5px rgb(119, 119, 83);
+  text-transform: uppercase;
+  min-width: 400px;
 }

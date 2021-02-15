@@ -6,7 +6,6 @@ import LoginForm from "../LoginFormModal/LoginForm";
 import { useDencrypt } from "use-dencrypt-effect";
 
 import { Modal } from "../../context/Modal";
-// import picture from "./simp.jpg";
 
 const Homepage = () => {
   const userId = useParams();
@@ -20,7 +19,7 @@ const Homepage = () => {
 
   let values;
   if (!user) {
-    values = ["WELCOME TO", "IN.SECURITY", "WHO R U"];
+    values = ["IN.SECURITY", "ENCRYPTION", "PROTECTED", "JOURNALING"];
   }
   if (user) {
     values = [`WELCOME BACK`, `${user.username}`];
@@ -74,7 +73,6 @@ const Homepage = () => {
               <div id="header">
                 <h1 id="logo-font">{result}</h1>
               </div>
-              {/* <h2>Welcome back, {user.username}.</h2> */}
               <Link to={`/entries/new`}>
                 <button className="button">new entry</button>
               </Link>
