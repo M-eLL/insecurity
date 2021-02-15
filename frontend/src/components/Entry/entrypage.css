@@ -1,22 +1,11 @@
-.decrypted-entry {
-  border: 1px solid #3f79bf;
-  box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
-  word-wrap: break-word;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgb(20, 6, 21);
-  border-radius: 5px;
-}
-
 .entry-page {
   text-align: center;
   background-color: rgb(20, 6, 21);
 }
 
 .entry-text {
-  border: 1px solid #3f79bf;
-  box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
+  border: 1px solid rgb(160, 160, 85);
+  box-shadow: 2px 3px 3px rgb(160, 160, 85), 1px 0px 10px rgb(160, 160, 85);
   word-wrap: break-word;
   max-width: 500px;
   margin: 0 auto;
@@ -54,3 +43,15 @@
   margin: 0 auto;
 }
 
+#edit-input {
+  color: rgb(160, 160, 85);
+}
+
+.yellutton {
+  margin: 20px;
+  padding: 1em;
+  border: 1px solid rgb(160, 160, 85);
+  border-radius: 5px;
+  box-shadow: 2px 3px 3px rgb(160, 160, 85), 1px 0px 10px rgb(160, 160, 85);
+  text-transform: uppercase;
+}

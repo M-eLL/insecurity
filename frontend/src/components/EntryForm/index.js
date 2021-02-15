@@ -66,8 +66,8 @@ const EntryForm = () => {
             className="textarea"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Write anything you want. Once you submit your entry, no one will be able
-        to decrypt it without the entry's unique passphrase."
+            placeholder="WRITE ANYTHING YOU WANT. ONCE YOU SUBMIT YOUR ENTRY, NO ONE WILL BE ABLE TO 
+        DECRYPT IT WITHOUT THE ENTRY'S UNIQUE PASSPHRASE."
           ></textarea>
           <br />
           <br />
@@ -82,12 +82,9 @@ const EntryForm = () => {
             placeholder="CHOOSE A PASSPHRASE."
           ></input>
           <p>
-            CHOOSE WISELY- LOSING THIS PASSPHRASE MEANS THAT YOU PERMANENTLY
-            LOSE ACCESS TO THIS ENTRY
+            LOSING THIS PASSPHRASE MEANS THAT YOU PERMANENTLY LOSE ACCESS TO
+            THIS ENTRY
           </p>
-          <br />
-          <br />
-          <br />
           <button className="blutton">submit</button>
         </div>
       </form>

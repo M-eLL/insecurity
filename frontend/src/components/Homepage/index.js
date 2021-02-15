@@ -22,7 +22,11 @@ const Homepage = () => {
     values = ["ENCRYPTION", "PROTECTED", "JOURNALING"];
   }
   if (user) {
-    values = [`WELCOME BACK`, `${user.username}!`, `missed u 🥺🥺🥺`];
+    values = [
+      `WELCOME BACK`,
+      `${user.username}!`,
+      `LET'S WRITE SOME SECRETS`,
+    ];
   }
 
   useEffect(() => {
@@ -51,7 +55,6 @@ const Homepage = () => {
           {!user && (
             <>
               <h3 id="logo-font">{result}</h3>
-              <h1>PLEASE LOG IN OR SIGN UP</h1>
               <Link>
                 <button className="button" onClick={() => setShowModal(true)}>
                   Log In

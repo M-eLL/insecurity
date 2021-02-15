@@ -1,12 +1,14 @@
 .textarea {
+  padding: 20px;
   min-height: 10em;
-  min-width: 40em;
+  min-width: 30em;
   font-size: 20px;
   border: 1px solid #3f79bf;
   box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
   border-radius: 5px;
   text-align: center;
   color: white;
+  font-weight: lighter;
 }
 
 input {
@@ -17,6 +19,7 @@ input {
   font-size: 20px;
   text-align: center;
   color: white;
+  font-weight: lighter;
 }
 
 .blutton {
@@ -30,6 +33,6 @@ input {
 
 p {
   font-size: small;
-  color: #3f79bf;
+  color: #606b79;
   /* color: rgba(255, 255, 158, 0.904); */
 }
