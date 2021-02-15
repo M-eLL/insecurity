@@ -19,7 +19,7 @@ const Entry = () => {
   const [passphrase, setPassphrase] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
   const [password, setPassword] = useState("");
@@ -55,14 +55,15 @@ const Entry = () => {
       let wordCount = originalText.split("").length;
       setTimeout(function () {
         setText(currEntry.text);
-      }, wordCount * 75);
+      }, wordCount * 50);
       // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IF PASSCODE IS WRONG
       if (originalText === "") {
         setAttempts(attempts + 1);
         console.log(attempts);
-        setError("wrong password");
+        setError(error - 1);
       } else {
         setAttempts(0);
+        setError(3);
         setErrorClass("entry-page");
       }
       return originalText;
@@ -70,7 +71,7 @@ const Entry = () => {
       // UTF8 ERROR HANDLING
       setAttempts(attempts + 1);
       console.log(attempts);
-      setError("wrong password");
+      setError(error - 1);
     }
   };
 
@@ -95,6 +96,7 @@ const Entry = () => {
     try {
       if (res.data.result === true) {
         setLock(true);
+        setError(3);
         setAttempts(0);
         setErrorClass("entry-page");
         console.log("UNLOCKING");
@@ -112,7 +114,8 @@ const Entry = () => {
         {lock === false && (
           <div>
             <label>
-              Password
+              Enter your login password
+              <br />
               <input
                 type="password"
                 value={password}
@@ -138,18 +141,6 @@ const Entry = () => {
         {lock === true && (
           <div className={errorClass}>
             <br />
-            <br />
-            <br />
-            <input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="EDIT TITLE?"
-            />
-            <br />
-            <button onClick={editHandler}>edit</button>
-            <br />
-            <br />
-            <br />
             <h1>{currEntry.title}</h1>
             <br />
             <div className="entry-text">{text}</div>
@@ -174,7 +165,19 @@ const Entry = () => {
                 decrypt message
               </button>
               <br />
-              <div className={errorClass}>{error}</div>
+              <div className={errorClass}>{error} attempts left</div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <input
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="EDIT TITLE?"
+              />
+              <button id="edit-input" onClick={editHandler}>
+                edit
+              </button>
               <br />
               <br />
               <br />
