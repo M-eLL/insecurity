@@ -131,20 +131,26 @@ const Entry = () => {
               }}
             >
               <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
+              <i className="fas fa-skull-crossbones"></i>
             </button>
           </div>
         )}
         {lock === true && (
           <div className={errorClass}>
-            <h1>{currEntry.title}</h1>
+            <br />
+            <br />
+            <br />
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="EDIT TITLE?"
-            />{" "}
+            />
+            <br />
             <button onClick={editHandler}>edit</button>
             <br />
             <br />
+            <br />
+            <h1>{currEntry.title}</h1>
             <br />
             <div className="entry-text">{text}</div>
             <br />
@@ -156,8 +162,10 @@ const Entry = () => {
                 value={passphrase}
                 onChange={(e) => setPassphrase(e.target.value)}
                 placeholder="passphrase"
-              ></input>{" "}
+              ></input>
+              <br />
               <button
+                className="redutton"
                 onClick={() => {
                   const decryptedText = decryptWithAES();
                   setText(decryptedText);
@@ -169,12 +177,10 @@ const Entry = () => {
               <div className={errorClass}>{error}</div>
               <br />
               <br />
-              <label>
-                <br />
-                <button style={{ color: "red" }} onClick={deleteHandler}>
-                  PERMANENTLY DELETE ENTRY?
-                </button>
-              </label>
+              <br />
+              <button style={{ color: "red" }} onClick={deleteHandler}>
+                PERMANENTLY DELETE ENTRY?
+              </button>
             </div>
           </div>
         )}

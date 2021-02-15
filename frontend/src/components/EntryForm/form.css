@@ -27,6 +27,7 @@ input {
   border-radius: 5px;
   box-shadow: 2px 3px 3px 1px #3f79bf, 1px 0px 10px 5px #235594;
   text-transform: uppercase;
+  min-width: 400px;
 }
 
 p {

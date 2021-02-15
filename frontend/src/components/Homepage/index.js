@@ -19,7 +19,7 @@ const Homepage = () => {
 
   let values;
   if (!user) {
-    values = ["WELCOME TO", "IN.SECURITY", "WHO R U"];
+    values = ["IN.SECURITY", "ENCRYPTION", "PROTECTED", "JOURNALING"];
   }
   if (user) {
     values = [`WELCOME BACK`, `${user.username}`];
