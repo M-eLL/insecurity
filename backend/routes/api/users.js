@@ -47,19 +47,6 @@ router.post(
   })
 );
 
-// // finds all entries
-// router.get(
-//   "/entries",
-//   restoreUser,
-//   asyncHandler(async (req, res) => {
-//     const { user } = req;
-//     const entries = await Entry.findAll({
-//       where: { userId: user.id, locked: false },
-//     });
-//     res.json(entries);
-//   })
-// );
-
 // finds all entries
 router.get(
   "/entries/:locked",

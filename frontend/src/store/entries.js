@@ -53,7 +53,6 @@ export const createEntry = (entry) => async (dispatch) => {
   dispatch(addEntry(newEntry));
 };
 
-
 const initState = {};
 
 const reducer = (state = initState, action) => {

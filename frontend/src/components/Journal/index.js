@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getEntries, createEntry } from "../../store/entries";
+import { getEntries } from "../../store/entries";
 import "./journal.css";
 
 const Journal = () => {
