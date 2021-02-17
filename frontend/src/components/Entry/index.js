@@ -6,6 +6,7 @@ import {
   deleteOneEntry,
   editOneEntry,
 } from "../../store/currentEntry";
+import { lockEntry } from "../../store/entries";
 import * as sessionActions from "../../store/session";
 import CryptoJS from "crypto-js";
 import "./entrypage.css";
@@ -43,6 +44,7 @@ const Entry = () => {
       console.log("LOCKING");
       setErrorClass("error");
       setLock(false);
+      dispatch(lockEntry(entryId));
       history.push(`/entries/${currEntry.id}`);
     }
   }, [attempts]);
