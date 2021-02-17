@@ -71,13 +71,14 @@ router.get(
   })
 );
 
+// hide entry
 router.patch(
   "/entries/:entryId",
   restoreUser,
   asyncHandler(async (req, res) => {
     const entryId = req.params.entryId;
     const entry = await Entry.findByPk(parseInt(entryId));
-    await entry.update({ locked: true });
+    await entry.update({ locked: !entry.toJSON().locked });
     res.json(entry);
   })
 );

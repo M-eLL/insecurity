@@ -31,7 +31,7 @@ export const lockEntry = (entryId) => async (dispatch) => {
   dispatch(hideEntry(entries));
 };
 
-export const getEntries = (userId) => async (dispatch) => {
+export const getEntries = () => async (dispatch) => {
   let response = await fetch(`/api/users/entries`);
   const entries = response.data;
   dispatch(setEntries(entries));

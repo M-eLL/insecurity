@@ -47,7 +47,7 @@ const Entry = () => {
       dispatch(lockEntry(entryId));
       history.push(`/entries/${currEntry.id}`);
     }
-  }, [attempts]);
+  }, [attempts, dispatch]);
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
@@ -94,7 +94,6 @@ const Entry = () => {
         password,
       })
     );
-    console.log("!!!!!!!!!!!", res.data.result);
     try {
       if (res.data.result === true) {
         setLock(true);
@@ -102,7 +101,6 @@ const Entry = () => {
         setAttempts(0);
         history.push("/entries");
         setErrorClass("entry-page");
-        console.log("UNLOCKING");
       } else {
         console.log("NO THAT'S WRONG");
       }
