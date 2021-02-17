@@ -100,6 +100,7 @@ const Entry = () => {
         setLock(true);
         setError(3);
         setAttempts(0);
+        history.push("/entries");
         setErrorClass("entry-page");
         console.log("UNLOCKING");
       } else {
