@@ -47,6 +47,18 @@ router.post(
   })
 );
 
+// finds one entry
+router.get(
+  "/entries/:entryId(\\d+)",
+  // accounting for digits now
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const entry = await Entry.findByPk(parseInt(entryId));
+    res.json(entry);
+  })
+);
+
 // finds all entries
 router.get(
   "/entries/:locked",
@@ -59,17 +71,6 @@ router.get(
       where: { userId: user.id, locked: bubblebop },
     });
     res.json(entries);
-  })
-);
-
-// finds one entry
-router.get(
-  "/entries/:entryId",
-  restoreUser,
-  asyncHandler(async (req, res) => {
-    const entryId = req.params.entryId;
-    const entry = await Entry.findByPk(parseInt(entryId));
-    res.json(entry);
   })
 );
 
