@@ -47,14 +47,29 @@ router.post(
   })
 );
 
+// // finds all entries
+// router.get(
+//   "/entries",
+//   restoreUser,
+//   asyncHandler(async (req, res) => {
+//     const { user } = req;
+//     const entries = await Entry.findAll({
+//       where: { userId: user.id, locked: false },
+//     });
+//     res.json(entries);
+//   })
+// );
+
 // finds all entries
 router.get(
-  "/entries",
+  "/entries/:locked",
   restoreUser,
   asyncHandler(async (req, res) => {
     const { user } = req;
+    const { locked } = req.params;
+    let bubblebop = locked === "true" ? true : false;
     const entries = await Entry.findAll({
-      where: { userId: user.id, locked: false },
+      where: { userId: user.id, locked: bubblebop },
     });
     res.json(entries);
   })
@@ -71,7 +86,7 @@ router.get(
   })
 );
 
-// hide entry
+// hide/show entry
 router.patch(
   "/entries/:entryId",
   restoreUser,

@@ -14,6 +14,7 @@ function Navigation({ isLoaded }) {
       <>
         <NavLink to="/entries/new">NEW ENTRY</NavLink>
         <NavLink to="/entries">VIEW ENTRIES</NavLink>
+        <NavLink to="/vault">VAULT</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );

@@ -31,8 +31,8 @@ export const lockEntry = (entryId) => async (dispatch) => {
   dispatch(hideEntry(entries));
 };
 
-export const getEntries = () => async (dispatch) => {
-  let response = await fetch(`/api/users/entries`);
+export const getEntries = (bubblebop = false) => async (dispatch) => {
+  let response = await fetch(`/api/users/entries/${bubblebop}`);
   const entries = response.data;
   dispatch(setEntries(entries));
 };
@@ -52,6 +52,8 @@ export const createEntry = (entry) => async (dispatch) => {
   const newEntry = response.data.entry;
   dispatch(addEntry(newEntry));
 };
+
+
 const initState = {};
 
 const reducer = (state = initState, action) => {
