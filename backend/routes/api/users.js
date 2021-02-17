@@ -54,8 +54,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const { user } = req;
     const entries = await Entry.findAll({
-      where: { userId: user.id },
-      include: [Category],
+      where: { userId: user.id, locked: false },
     });
     res.json(entries);
   })
@@ -68,6 +67,17 @@ router.get(
   asyncHandler(async (req, res) => {
     const entryId = req.params.entryId;
     const entry = await Entry.findByPk(parseInt(entryId));
+    res.json(entry);
+  })
+);
+
+router.patch(
+  "/entries/:entryId",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const entryId = req.params.entryId;
+    const entry = await Entry.findByPk(parseInt(entryId));
+    await entry.update({ locked: true });
     res.json(entry);
   })
 );
@@ -98,7 +108,6 @@ router.post(
       title,
       userId: req.params.id,
       text: encryptedText,
-      locked: false,
     });
 
     return res.json({ entry });

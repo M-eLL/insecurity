@@ -3,6 +3,7 @@ import { fetch } from "./csrf.js";
 const SET_ENTRIES = "entries/setEntries";
 const SET_ONE_ENTRY = "entries/setOneEntry";
 const ADD_ENTRY = "entries/addEntries";
+const SET_HIDDEN = "entries/hideEntry";
 
 const setEntries = (payload) => ({
   type: SET_ENTRIES,
@@ -16,6 +17,19 @@ const setOneEntry = (payload) => ({
   type: SET_ONE_ENTRY,
   payload,
 });
+
+const hideEntry = (payload) => ({
+  type: SET_HIDDEN,
+  payload,
+});
+
+export const lockEntry = (entryId) => async (dispatch) => {
+  let response = await fetch(`/api/users/entries/${entryId}`, {
+    method: "PATCH",
+  });
+  const entries = response.data;
+  dispatch(hideEntry(entries));
+};
 
 export const getEntries = (userId) => async (dispatch) => {
   let response = await fetch(`/api/users/entries`);
@@ -45,11 +59,17 @@ const reducer = (state = initState, action) => {
   let newState;
   switch (action.type) {
     case SET_ENTRIES:
-      newState = action.payload;
+      newState = {};
+      action.payload.forEach((entry) => (newState[entry.id] = entry));
       return { ...newState };
     case ADD_ENTRY:
-      newState = action.payload;
-      return { ...state, newState };
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case SET_HIDDEN:
+      newState = { ...state };
+      delete newState[action.payload.id];
+      return newState;
     default:
       return state;
   }
