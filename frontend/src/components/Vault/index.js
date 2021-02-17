@@ -8,6 +8,7 @@ const Vault = () => {
 
   const user = useSelector((state) => state.session.user);
   const entries = useSelector((state) => state.entries);
+  console.log(entries);
 
   useEffect(() => {
     dispatch(getEntries(true));
@@ -15,19 +16,15 @@ const Vault = () => {
 
   return (
     <div>
-      {user && (
-        <div>
-          <h1 style={{ textAlign: "center" }}>
-            these are your entries by title
-          </h1>
-          {Object.values(entries).map((entry) => (
+      {Object.values(entries).map(
+        (entry) =>
+          entry.locked === true && (
             <Link key={entry.id} to={`/entries/${entry.id}`}>
               <div id="entries-list">
-                <div>{entry.title}</div>
+                <h1>{entry.title}</h1>
               </div>
             </Link>
-          ))}
-        </div>
+          )
       )}
     </div>
   );

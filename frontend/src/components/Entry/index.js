@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import {
   getOneEntry,
   deleteOneEntry,
@@ -110,85 +110,40 @@ const Entry = () => {
   };
 
   return (
-    <div className={errorClass}>
-      <div>
-        {lock === false && (
-          <div>
-            <label>
-              Enter your login password
-              <br />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </label>
-            <br />
-            <button
-              className="panic-button"
-              value={lock}
-              onClick={() => {
-                {
-                  panicHandler();
-                }
-              }}
-            >
-              <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
-              <i className="fas fa-skull-crossbones"></i>
-            </button>
-          </div>
-        )}
-        {lock === true && (
-          <div className={errorClass}>
-            <br />
-            <h1>{currEntry.title}</h1>
-            <br />
-            <div className="entry-text">{text}</div>
-            <br />
-            <br />
-            <br />
-            <div>
-              <input
-                type="password"
-                value={passphrase}
-                onChange={(e) => setPassphrase(e.target.value)}
-                placeholder="passphrase"
-              ></input>
-              <br />
-              <button
-                className="yellutton"
-                onClick={() => {
-                  const decryptedText = decryptWithAES();
-                  setText(decryptedText);
-                }}
-              >
-                decrypt message
-              </button>
-              <br />
-              <div className={errorClass}>{error} attempts left</div>
-              <br />
-              <br />
-              <br />
-              <br />
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="EDIT TITLE?"
-              />
-              <button id="edit-input" onClick={editHandler}>
-                edit
-              </button>
-              <br />
-              <br />
-              <br />
-              <button style={{ color: "red" }} onClick={deleteHandler}>
-                PERMANENTLY DELETE ENTRY?
-              </button>
+    <div>
+      {Object.values(currEntry).map(
+        (entry) =>
+          entry.locked === true && (
+            <div className={errorClass}>
+              <div>
+                <label>
+                  Enter your login password
+                  <br />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </label>
+                <br />
+                <button
+                  className="panic-button"
+                  value={lock}
+                  onClick={() => {
+                    {
+                      panicHandler();
+                    }
+                  }}
+                >
+                  <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT
+                  STOP
+                  <i className="fas fa-skull-crossbones"></i>
+                </button>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )
+      )}
     </div>
   );
 };
