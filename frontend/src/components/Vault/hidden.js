@@ -1,7 +1,8 @@
 const Hidden = () => {
   return (
     <>
-      <h1>THese are hidden</h1>
+      <h1>These are hidden</h1>
+      <h2>SECRETS</h2>
     </>
   );
 };
