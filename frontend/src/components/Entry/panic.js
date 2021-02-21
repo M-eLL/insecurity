@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { lockEntry } from "../../store/entries";
@@ -18,6 +18,15 @@ const Panic = () => {
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
 
+  useEffect(() => {
+    if (attempts >= 3) {
+      dispatch(sessionActions.logout());
+      history.push("/");
+      window.location.reload();
+      setErrorClass("entry-page");
+    }
+  }, [attempts, dispatch]);
+
   const panicHandler = async () => {
     let res = await dispatch(
       sessionActions.validatePassword({
@@ -30,13 +39,15 @@ const Panic = () => {
         dispatch(lockEntry(true));
         setError(3);
         setAttempts(0);
-        history.push("/entries");
+        history.push("/vault");
         setErrorClass("entry-page");
       } else {
-        console.log("NO THAT'S WRONG");
+        setAttempts(attempts + 1);
+        setError(error - 1);
       }
     } catch {
-      console.log("NO THAT'S WRONG");
+      setAttempts(attempts + 1);
+      setError(error - 1);
     }
   };
 
@@ -64,6 +75,7 @@ const Panic = () => {
         <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
         <i className="fas fa-skull-crossbones"></i>
       </button>
+      <div className={errorClass}>{error} attempts left</div>
     </div>
   );
 };
