@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import {
-  getOneEntry,
+  // getOneEntry,
   deleteOneEntry,
-  editOneEntry,
+  // editOneEntry,
 } from "../../store/currentEntry";
 import { lockEntry } from "../../store/entries";
-import CryptoJS from "crypto-js";
+// import CryptoJS from "crypto-js";
 
 const Hidden = () => {
   const dispatch = useDispatch();
@@ -16,9 +16,9 @@ const Hidden = () => {
 
   const { entryId } = useParams();
 
-  const [passphrase, setPassphrase] = useState("");
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  // const [passphrase, setPassphrase] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [text, setText] = useState("");
   const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
@@ -83,10 +83,12 @@ const Hidden = () => {
             }
           }}
         >
-          <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
+          <i className="fas fa-skull-crossbones"></i> Restore entry
           <i className="fas fa-skull-crossbones"></i>
         </button>
-        <div className={errorClass}>{error} attempts left</div>
+        <div className={errorClass}>
+          {error} attempts left before permanent deletion of entry
+        </div>
       </div>
     </div>
   );

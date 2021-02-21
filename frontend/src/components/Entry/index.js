@@ -40,7 +40,7 @@ const Entry = () => {
     if (attempts >= 3) {
       setErrorClass("error");
       dispatch(lockEntry(entryId));
-      history.push(`/entries/${currEntry.id}`);
+      // history.push(`/entries/${currEntry.id}`);
     }
   }, [attempts, dispatch]);
 
@@ -56,7 +56,6 @@ const Entry = () => {
       // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IF PASSCODE IS WRONG
       if (originalText === "") {
         setAttempts(attempts + 1);
-        console.log(attempts);
         setError(error - 1);
       } else {
         setAttempts(0);
@@ -67,7 +66,6 @@ const Entry = () => {
     } catch (e) {
       // UTF8 ERROR HANDLING
       setAttempts(attempts + 1);
-      console.log(attempts);
       setError(error - 1);
     }
   };

@@ -21,9 +21,9 @@ const Panic = () => {
   useEffect(() => {
     if (attempts >= 3) {
       dispatch(sessionActions.logout());
+      setErrorClass("entry-page");
       history.push("/");
       window.location.reload();
-      setErrorClass("entry-page");
     }
   }, [attempts, dispatch]);
 
@@ -36,7 +36,7 @@ const Panic = () => {
     );
     try {
       if (res.data.result === true) {
-        dispatch(lockEntry(true));
+        // dispatch(lockEntry(entryId));
         setError(3);
         setAttempts(0);
         history.push("/vault");
@@ -75,7 +75,7 @@ const Panic = () => {
         <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
         <i className="fas fa-skull-crossbones"></i>
       </button>
-      <div className={errorClass}>{error} attempts left</div>
+      <div className={errorClass}>{error} attempts left before ending session</div>
     </div>
   );
 };
