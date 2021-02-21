@@ -6,7 +6,6 @@ import { getEntries } from "../../store/entries";
 const Vault = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.session.user);
   const entries = useSelector((state) => state.entries);
 
   useEffect(() => {
