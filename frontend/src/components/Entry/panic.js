@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { lockEntry } from "../../store/entries";

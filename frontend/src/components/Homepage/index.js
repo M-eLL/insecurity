@@ -22,11 +22,7 @@ const Homepage = () => {
     values = ["ENCRYPTION", "PROTECTED", "JOURNALING"];
   }
   if (user) {
-    values = [
-      `WELCOME BACK`,
-      `${user.username}!`,
-      `LET'S WRITE SOME SECRETS`,
-    ];
+    values = [`WELCOME BACK`, `${user.username}!`, `LET'S WRITE SOME SECRETS`];
   }
 
   useEffect(() => {
@@ -54,7 +50,7 @@ const Homepage = () => {
           <h1 id="perm-header">IN.SECURITY</h1>
           {!user && (
             <>
-              <h3 id="logo-font">{result}</h3>
+              <h4 id="logo-font">{result}</h4>
               <Link>
                 <button className="button" onClick={() => setShowModal(true)}>
                   Log In
@@ -72,7 +68,7 @@ const Homepage = () => {
           )}
           {user && (
             <div>
-              <h3 id="logo-font">{result}</h3>
+              <h4 id="logo-font">{result}</h4>
               <Link to={`/entries/new`}>
                 <button className="button">new entry</button>
               </Link>

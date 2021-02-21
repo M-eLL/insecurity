@@ -25,7 +25,6 @@ const Entry = () => {
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
 
-  const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
 
   useEffect(() => {
@@ -39,7 +38,6 @@ const Entry = () => {
   // after a certain number of attempts trigger "panic"
   useEffect(() => {
     if (attempts >= 3) {
-      console.log("LOCKING");
       setErrorClass("error");
       dispatch(lockEntry(entryId));
       history.push(`/entries/${currEntry.id}`);
