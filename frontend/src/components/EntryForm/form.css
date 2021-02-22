@@ -4,7 +4,7 @@
   min-width: 30em;
   font-size: 20px;
   border: 1px solid #3f79bf;
-  box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
+  box-shadow: 2px 3px 3px 1px #235594, 1px 0px 10px 5px #235594;
   border-radius: 5px;
   text-align: center;
   color: white;
@@ -15,7 +15,7 @@ input {
   border: 1px solid #3f79bf6e;
   background-color: rgb(20, 6, 21);
   border-radius: 5px;
-  min-width: 20em;
+  /* min-width: 20em; */
   font-size: 20px;
   text-align: center;
   color: white;
@@ -23,11 +23,12 @@ input {
 }
 
 .blutton {
+  min-width: 250px;
   margin: 20px;
   padding: 1em;
   border: 1px solid #3f79bf;
   border-radius: 5px;
-  box-shadow: 2px 3px 3px #3f79bf, 1px 0px 10px#235594;
+  box-shadow: 2px 3px 3px 1px #235594, 1px 0px 10px 5px #235594;
   text-transform: uppercase;
 }
 

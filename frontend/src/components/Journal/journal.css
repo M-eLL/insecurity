@@ -1,11 +1,45 @@
 #entries-list {
-  border: 1px solid rgba(0, 139, 139, 0.219);
-  box-shadow: 0px 10px 13px -7px cyan, 5px 5px 15px 5px rgb(27, 27, 27);
+  text-align: center;
+  margin: 15px auto;
+  padding: 10px;
+}
+
+#entries-list #single-entry a {
   text-align: center;
   margin: 10px auto;
-  width: 400px;
-  padding: 5px;
+  padding: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.151);
   border-radius: 5px;
-  overflow: hidden;
+  box-shadow: 0 0 5px cyan;
+  background: rgb(20, 6, 21);
+  font-size: 25px;
+  font-variant-caps: small-caps;
+  font-weight: lighter;
+  color: rgb(255, 0, 212);
+  transition: 0.5s;
 }
-/* insecurity static then decrypt key words */
+
+#entries-list #single-entry a:before {
+  text-align: center;
+  margin: 10px auto;
+  padding: 5px;
+  border: 1px solid cyan;
+  border-radius: 5px;
+  box-shadow: 0 0 8px cyan;
+  height: 100%;
+  background: cyan;
+  transition: 0.5s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+#entries-list #single-entry a:hover:before {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px cyan;
+}
+
+#entries-list #single-entry a:hover {
+  color: #ffa502;
+  filter: invert(80%);
+  font-weight: normal;
+}
