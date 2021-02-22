@@ -90,39 +90,41 @@ const Entry = () => {
     <div className={errorClass}>
       {errorClass !== "error" ? (
         <div>
-          <Navigation isLoaded={isLoaded} />
           {currEntry.locked === false ? (
-            <div className={errorClass}>
-              <h1>{currEntry.title}</h1>
-              <div className="entry-text">{text}</div>
-              <div>
-                <input
-                  type="password"
-                  value={passphrase}
-                  onChange={(e) => setPassphrase(e.target.value)}
-                  placeholder="passphrase"
-                ></input>
-                <button
-                  className="yellutton"
-                  onClick={() => {
-                    const decryptedText = decryptWithAES();
-                    setText(decryptedText);
-                  }}
-                >
-                  decrypt message
-                </button>
-                <div className={errorClass}>{error} attempts left</div>
-                <input
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="EDIT TITLE?"
-                />
-                <button id="edit-input" onClick={editHandler}>
-                  edit
-                </button>
-                <button style={{ color: "red" }} onClick={deleteHandler}>
-                  PERMANENTLY DELETE ENTRY?
-                </button>
+            <div>
+              <Navigation isLoaded={isLoaded} />
+              <div className={errorClass}>
+                <h1>{currEntry.title}</h1>
+                <div className="entry-text">{text}</div>
+                <div>
+                  <input
+                    type="password"
+                    value={passphrase}
+                    onChange={(e) => setPassphrase(e.target.value)}
+                    placeholder="passphrase"
+                  ></input>
+                  <button
+                    className="yellutton"
+                    onClick={() => {
+                      const decryptedText = decryptWithAES();
+                      setText(decryptedText);
+                    }}
+                  >
+                    decrypt message
+                  </button>
+                  <div className={errorClass}>{error} attempts left</div>
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="EDIT TITLE?"
+                  />
+                  <button id="edit-input" onClick={editHandler}>
+                    edit
+                  </button>
+                  <button style={{ color: "red" }} onClick={deleteHandler}>
+                    PERMANENTLY DELETE ENTRY?
+                  </button>
+                </div>
               </div>
             </div>
           ) : (

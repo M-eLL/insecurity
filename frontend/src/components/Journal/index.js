@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getEntries } from "../../store/entries";
 import "./journal.css";
 
@@ -16,12 +16,15 @@ const Journal = () => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>these are your entries by title</h1>
+
       {Object.values(entries).map((entry) => (
-        <Link key={entry.id} to={`/entries/${entry.id}`}>
-          <div id="entries-list">
-            <div>{entry.title}</div>
+        <NavLink key={entry.id} to={`/entries/${entry.id}`}>
+          <div id="entries-list" aria-hidden="true">
+            <div id="single-entry" aria-hidden="true">
+              <a>{entry.title}</a>
+            </div>
           </div>
-        </Link>
+        </NavLink>
       ))}
     </div>
   );
