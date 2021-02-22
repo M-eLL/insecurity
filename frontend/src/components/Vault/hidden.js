@@ -61,7 +61,6 @@ const Hidden = () => {
 
   return (
     <div>
-      {/* <h1>single hidden entry component</h1> */}
       <div>
         <h1>{currEntry.title}</h1>
         <label>

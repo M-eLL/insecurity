@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   getOneEntry,
@@ -11,6 +11,8 @@ import CryptoJS from "crypto-js";
 import "./entrypage.css";
 import Panic from "./panic";
 import Hidden from "../Vault/hidden";
+
+export const ErrorClass = createContext();
 
 const Entry = () => {
   const dispatch = useDispatch();
@@ -81,51 +83,53 @@ const Entry = () => {
   };
 
   return (
-    <div className={errorClass}>
-      {errorClass !== "error" ? (
-        <div>
-          {currEntry.locked === false ? (
-            <div className={errorClass}>
-              <h1>{currEntry.title}</h1>
-              <div className="entry-text">{text}</div>
-              <div>
-                <input
-                  type="password"
-                  value={passphrase}
-                  onChange={(e) => setPassphrase(e.target.value)}
-                  placeholder="passphrase"
-                ></input>
-                <button
-                  className="yellutton"
-                  onClick={() => {
-                    const decryptedText = decryptWithAES();
-                    setText(decryptedText);
-                  }}
-                >
-                  decrypt message
-                </button>
-                <div className={errorClass}>{error} attempts left</div>
-                <input
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="EDIT TITLE?"
-                />
-                <button id="edit-input" onClick={editHandler}>
-                  edit
-                </button>
-                <button style={{ color: "red" }} onClick={deleteHandler}>
-                  PERMANENTLY DELETE ENTRY?
-                </button>
+    <ErrorClass.Provider value={{ errorClass, setErrorClass }}>
+      <div className={errorClass}>
+        {errorClass !== "error" ? (
+          <div>
+            {currEntry.locked === false ? (
+              <div className={errorClass}>
+                <h1>{currEntry.title}</h1>
+                <div className="entry-text">{text}</div>
+                <div>
+                  <input
+                    type="password"
+                    value={passphrase}
+                    onChange={(e) => setPassphrase(e.target.value)}
+                    placeholder="passphrase"
+                  ></input>
+                  <button
+                    className="yellutton"
+                    onClick={() => {
+                      const decryptedText = decryptWithAES();
+                      setText(decryptedText);
+                    }}
+                  >
+                    decrypt message
+                  </button>
+                  <div className={errorClass}>{error} attempts left</div>
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="EDIT TITLE?"
+                  />
+                  <button id="edit-input" onClick={editHandler}>
+                    edit
+                  </button>
+                  <button style={{ color: "red" }} onClick={deleteHandler}>
+                    PERMANENTLY DELETE ENTRY?
+                  </button>
+                </div>
               </div>
-            </div>
-          ) : (
-            <Hidden />
-          )}
-        </div>
-      ) : (
-        <Panic />
-      )}
-    </div>
+            ) : (
+              <Hidden />
+            )}
+          </div>
+        ) : (
+          <Panic />
+        )}
+      </div>
+    </ErrorClass.Provider>
   );
 };
 

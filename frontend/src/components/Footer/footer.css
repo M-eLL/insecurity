@@ -3,7 +3,9 @@
 }
 
 .footer-icons {
-  padding-top: 3em;
+  border-top: 1px solid rgba(169, 169, 169, 0.089);
+  margin-top: 3em;
+  padding-top: 2em;
   display: flex;
   justify-content: center;
 }
