@@ -6,9 +6,11 @@ import {
   deleteOneEntry,
   editOneEntry,
 } from "../../store/currentEntry";
-import * as sessionActions from "../../store/session";
+import { lockEntry } from "../../store/entries";
 import CryptoJS from "crypto-js";
 import "./entrypage.css";
+import Panic from "./panic";
+import Hidden from "../Vault/hidden";
 
 const Entry = () => {
   const dispatch = useDispatch();
@@ -22,12 +24,8 @@ const Entry = () => {
   const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
-  const [password, setPassword] = useState("");
-  const [lock, setLock] = useState(true);
 
-  const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
-  // const [lock, setLock] = useState(currEntry.locked);
 
   useEffect(() => {
     setText(currEntry.text);
@@ -40,12 +38,11 @@ const Entry = () => {
   // after a certain number of attempts trigger "panic"
   useEffect(() => {
     if (attempts >= 3) {
-      console.log("LOCKING");
       setErrorClass("error");
-      setLock(false);
-      history.push(`/entries/${currEntry.id}`);
+      dispatch(lockEntry(entryId));
+      // history.push(`/entries/${currEntry.id}`);
     }
-  }, [attempts]);
+  }, [attempts, dispatch]);
 
   const decryptWithAES = () => {
     const bytes = CryptoJS.AES.decrypt(currEntry.text, passphrase);
@@ -59,7 +56,6 @@ const Entry = () => {
       // ORIGINAL TEXT SHOWS UP AS EMPTY STRING IF PASSCODE IS WRONG
       if (originalText === "") {
         setAttempts(attempts + 1);
-        console.log(attempts);
         setError(error - 1);
       } else {
         setAttempts(0);
@@ -70,7 +66,6 @@ const Entry = () => {
     } catch (e) {
       // UTF8 ERROR HANDLING
       setAttempts(attempts + 1);
-      console.log(attempts);
       setError(error - 1);
     }
   };
@@ -85,109 +80,51 @@ const Entry = () => {
     history.push("/entries");
   };
 
-  const panicHandler = async () => {
-    let res = await dispatch(
-      sessionActions.validatePassword({
-        credential: user.email,
-        password,
-      })
-    );
-    console.log("!!!!!!!!!!!", res.data.result);
-    try {
-      if (res.data.result === true) {
-        setLock(true);
-        setError(3);
-        setAttempts(0);
-        setErrorClass("entry-page");
-        console.log("UNLOCKING");
-      } else {
-        console.log("NO THAT'S WRONG");
-      }
-    } catch {
-      console.log("NO THAT'S WRONG");
-    }
-  };
-
   return (
     <div className={errorClass}>
-      <div>
-        {lock === false && (
-          <div>
-            <label>
-              Enter your login password
-              <br />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </label>
-            <br />
-            <button
-              className="panic-button"
-              value={lock}
-              onClick={() => {
-                {
-                  panicHandler();
-                }
-              }}
-            >
-              <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
-              <i className="fas fa-skull-crossbones"></i>
-            </button>
-          </div>
-        )}
-        {lock === true && (
-          <div className={errorClass}>
-            <br />
-            <h1>{currEntry.title}</h1>
-            <br />
-            <div className="entry-text">{text}</div>
-            <br />
-            <br />
-            <br />
-            <div>
-              <input
-                type="password"
-                value={passphrase}
-                onChange={(e) => setPassphrase(e.target.value)}
-                placeholder="passphrase"
-              ></input>
-              <br />
-              <button
-                className="yellutton"
-                onClick={() => {
-                  const decryptedText = decryptWithAES();
-                  setText(decryptedText);
-                }}
-              >
-                decrypt message
-              </button>
-              <br />
-              <div className={errorClass}>{error} attempts left</div>
-              <br />
-              <br />
-              <br />
-              <br />
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="EDIT TITLE?"
-              />
-              <button id="edit-input" onClick={editHandler}>
-                edit
-              </button>
-              <br />
-              <br />
-              <br />
-              <button style={{ color: "red" }} onClick={deleteHandler}>
-                PERMANENTLY DELETE ENTRY?
-              </button>
+      {errorClass !== "error" ? (
+        <div>
+          {currEntry.locked === false ? (
+            <div className={errorClass}>
+              <h1>{currEntry.title}</h1>
+              <div className="entry-text">{text}</div>
+              <div>
+                <input
+                  type="password"
+                  value={passphrase}
+                  onChange={(e) => setPassphrase(e.target.value)}
+                  placeholder="passphrase"
+                ></input>
+                <button
+                  className="yellutton"
+                  onClick={() => {
+                    const decryptedText = decryptWithAES();
+                    setText(decryptedText);
+                  }}
+                >
+                  decrypt message
+                </button>
+                <div className={errorClass}>{error} attempts left</div>
+                <input
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="EDIT TITLE?"
+                />
+                <button id="edit-input" onClick={editHandler}>
+                  edit
+                </button>
+                <button style={{ color: "red" }} onClick={deleteHandler}>
+                  PERMANENTLY DELETE ENTRY?
+                </button>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          ) : (
+            <Hidden />
+          )}
+        </div>
+      ) : (
+        <Panic />
+      )}
     </div>
   );
 };

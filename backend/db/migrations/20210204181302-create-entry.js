@@ -14,7 +14,9 @@ module.exports = {
         references: { model: "Users" },
       },
       locked: {
+        allowNull: false,
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       starred: {
         type: Sequelize.BOOLEAN,
@@ -31,10 +33,6 @@ module.exports = {
       categoryId: {
         type: Sequelize.INTEGER,
         references: { model: "Categories" },
-      },
-      promptId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Prompts" },
       },
       hashedPassword: {
         type: Sequelize.STRING,
@@ -59,4 +57,4 @@ module.exports = {
     return queryInterface.dropTable("Entries");
   },
 };
-``
+``;
