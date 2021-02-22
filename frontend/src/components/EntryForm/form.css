@@ -15,7 +15,7 @@ input {
   border: 1px solid #3f79bf6e;
   background-color: rgb(20, 6, 21);
   border-radius: 5px;
-  min-width: 20em;
+  /* min-width: 20em; */
   font-size: 20px;
   text-align: center;
   color: white;

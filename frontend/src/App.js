@@ -21,29 +21,33 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
           <Route exact path="/">
+            <Navigation isLoaded={isLoaded} />
             <Homepage />
             <Footer />
           </Route>
           <Route exact path="/entries">
+            <Navigation isLoaded={isLoaded} />
             <Journal />
           </Route>
           <Route exact path="/vault">
+            <Navigation isLoaded={isLoaded} />
             <Vault />
           </Route>
           <Route exact path="/entries/new">
+            <Navigation isLoaded={isLoaded} />
             <EntryForm />
           </Route>
           <Route exact path="/entries/:entryId">
             <Entry />
           </Route>
           <Route path="/signup">
+            <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
           </Route>
         </Switch>

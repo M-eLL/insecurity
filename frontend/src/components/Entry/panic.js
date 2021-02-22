@@ -52,9 +52,11 @@ const Panic = () => {
   };
 
   return (
-    <div>
+    <div className="panic-input">
       <label>
-        Enter your login password
+        <h1 style={{ borderBottom: "1px solid red", color: "red" }}>
+          Enter your login password
+        </h1>
         <br />
         <input
           type="password"
@@ -63,19 +65,23 @@ const Panic = () => {
           required
         />
       </label>
-      <button
-        className="panic-button"
-        value={currEntry.locked}
-        onClick={() => {
-          {
-            panicHandler();
-          }
-        }}
-      >
-        <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
-        <i className="fas fa-skull-crossbones"></i>
-      </button>
-      <div className={errorClass}>{error} attempts left before ending session</div>
+      <div className={errorClass} style={{ color: "red", fontSize: "small" }}>
+        {error} attempts left before ending session
+      </div>
+      <div style={{ paddingTop: "2em" }}>
+        <button
+          className="panic-button"
+          value={currEntry.locked}
+          onClick={() => {
+            {
+              panicHandler();
+            }
+          }}
+        >
+          <i className="fas fa-skull-crossbones"></i> PLEASE MAKE IT STOP
+          <i className="fas fa-skull-crossbones"></i>
+        </button>
+      </div>
     </div>
   );
 };

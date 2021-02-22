@@ -8,6 +8,7 @@ import {
   // editOneEntry,
 } from "../../store/currentEntry";
 import { lockEntry } from "../../store/entries";
+import "../Entry/entrypage.css";
 // import CryptoJS from "crypto-js";
 
 const Hidden = () => {
@@ -60,12 +61,13 @@ const Hidden = () => {
   };
 
   return (
-    <div>
-      {/* <h1>single hidden entry component</h1> */}
+    <div className="hidden-entry">
+      <h1 style={{ borderBottom: "1px solid gray", margin: "2em" }}>
+        {currEntry.title}
+      </h1>
       <div>
-        <h1>{currEntry.title}</h1>
         <label>
-          Enter your login password
+          <div>Enter login password</div>
           <br />
           <input
             type="password"
@@ -74,20 +76,22 @@ const Hidden = () => {
             required
           />
         </label>
-        <button
-          className="panic-button"
-          value={currEntry.locked}
-          onClick={() => {
-            {
-              panicHandler();
-            }
-          }}
-        >
-          <i className="fas fa-skull-crossbones"></i> Restore entry
-          <i className="fas fa-skull-crossbones"></i>
-        </button>
-        <div className={errorClass}>
-          {error} attempts left before permanent deletion of entry
+        <div className={errorClass} style={{ color: "red", fontSize: "small" }}>
+          PERMANENT DELETION IN {error}...
+        </div>
+        <div style={{ paddingTop: "2em" }}>
+          <button
+            className="hidden-entry"
+            value={currEntry.locked}
+            onClick={() => {
+              {
+                panicHandler();
+              }
+            }}
+          >
+            Restore entry {"  "}
+            <i className="fas fa-undo"></i>
+          </button>
         </div>
       </div>
     </div>
