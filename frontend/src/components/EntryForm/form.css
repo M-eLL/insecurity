@@ -15,7 +15,6 @@ input {
   border: 1px solid #3f79bf6e;
   background-color: rgb(20, 6, 21);
   border-radius: 5px;
-  /* min-width: 20em; */
   font-size: 20px;
   text-align: center;
   color: white;
@@ -35,5 +34,4 @@ input {
 p {
   font-size: small;
   color: #606b79;
-  /* color: rgba(255, 255, 158, 0.904); */
 }

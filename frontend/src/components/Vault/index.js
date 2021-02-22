@@ -15,9 +15,7 @@ const Vault = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>
-        This is the vault of hidden entries component
-      </h1>
+      <h1 style={{ textAlign: "center" }}>LOCKED SUPER SECRET ENTRIES</h1>
       {Object.values(entries).map((entry) => (
         <NavLink key={entry.id} to={`/entries/${entry.id}`}>
           <div id="entries-list" aria-hidden="true">

@@ -3,23 +3,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* position: relative;
-  top: 0;
-  left: 0; */
   text-align: center;
   background-color: rgb(20, 6, 21);
   width: 100vw;
 }
 
 .entry-text {
-  /* border: 1px solid rgb(160, 160, 85); */
-  /* box-shadow: 2px 3px 3px rgb(160, 160, 85), 1px 0px 10px rgb(160, 160, 85); */
-  word-wrap: break-word;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
+  margin: 20px;
+  padding: 1em;
+  border: 1px solid rgb(174, 102, 102);
   border-radius: 5px;
+  box-shadow: 2px 3px 3px 1px rgb(81, 21, 21), 1px 0px 10px 5px rgb(81, 21, 21);
+  text-transform: uppercase;
 }
 
 .error {
@@ -63,10 +58,6 @@
   text-transform: uppercase;
 }
 
-#edit-input {
-  color: rgb(160, 160, 85);
-}
-
 .hidden-entry {
   min-width: 250px;
   margin: 20px;
@@ -75,4 +66,8 @@
   border-radius: 5px;
   box-shadow: 2px 3px 3px 1px rgb(81, 21, 21), 1px 0px 10px 5px rgb(81, 21, 21);
   text-transform: uppercase;
+}
+
+.white {
+  color: white;
 }
