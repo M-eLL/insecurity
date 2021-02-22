@@ -2,14 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import {
-  // getOneEntry,
-  deleteOneEntry,
-  // editOneEntry,
-} from "../../store/currentEntry";
+import { deleteOneEntry } from "../../store/currentEntry";
 import { lockEntry } from "../../store/entries";
 import "../Entry/entrypage.css";
-// import CryptoJS from "crypto-js";
 
 const Hidden = () => {
   const dispatch = useDispatch();
@@ -17,9 +12,6 @@ const Hidden = () => {
 
   const { entryId } = useParams();
 
-  // const [passphrase, setPassphrase] = useState("");
-  // const [title, setTitle] = useState("");
-  // const [text, setText] = useState("");
   const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
@@ -61,7 +53,7 @@ const Hidden = () => {
   };
 
   return (
-    <div className="hidden-entry">
+    <div className="hidden-entry" style={{ marginTop: "6em" }}>
       <h1 style={{ borderBottom: "1px solid gray", margin: "2em" }}>
         {currEntry.title}
       </h1>

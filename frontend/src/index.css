@@ -19,3 +19,13 @@
   box-shadow: 2px 3px 3px 1px rgb(76, 21, 81), 1px 0px 10px 5px rgb(76, 21, 81);
   text-transform: uppercase;
 }
+
+.navbar {
+  margin-right: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(169, 169, 169, 0.345);
+  text-transform: uppercase;
+}

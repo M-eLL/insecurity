@@ -7,10 +7,12 @@ import {
   editOneEntry,
 } from "../../store/currentEntry";
 import { lockEntry } from "../../store/entries";
+import * as sessionActions from "../../store/session";
 import CryptoJS from "crypto-js";
 import "./entrypage.css";
 import Panic from "./panic";
 import Hidden from "../Vault/hidden";
+import Navigation from "../Navigation";
 
 const Entry = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,10 @@ const Entry = () => {
   const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+  }, [dispatch]);
 
   const currEntry = useSelector((state) => state.currentEntry);
 
@@ -84,6 +90,7 @@ const Entry = () => {
     <div className={errorClass}>
       {errorClass !== "error" ? (
         <div>
+          <Navigation isLoaded={isLoaded} />
           {currEntry.locked === false ? (
             <div className={errorClass}>
               <h1>{currEntry.title}</h1>
