@@ -103,8 +103,12 @@ const Entry = () => {
                     onChange={(e) => setPassphrase(e.target.value)}
                     placeholder="passphrase"
                   ></input>
+                  <p className={errorClass} style={{ color: "red" }}>
+                    {error} attempts left
+                  </p>
+                  <br />
                   <button
-                    className="yellutton"
+                    className=""
                     onClick={() => {
                       const decryptedText = decryptWithAES();
                       setText(decryptedText);
@@ -112,18 +116,21 @@ const Entry = () => {
                   >
                     decrypt message
                   </button>
-                  <div className={errorClass}>{error} attempts left</div>
-                  <input
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="EDIT TITLE?"
-                  />
-                  <button id="edit-input" onClick={editHandler}>
-                    edit
-                  </button>
-                  <button style={{ color: "red" }} onClick={deleteHandler}>
-                    PERMANENTLY DELETE ENTRY?
-                  </button>
+                  <br />
+                  <br />
+                  <div>
+                    <input
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      placeholder="EDIT HINT"
+                    />
+                    <button id="edit-input" onClick={editHandler}>
+                      edit
+                    </button>
+                    <button style={{ color: "red" }} onClick={deleteHandler}>
+                      PERMANENTLY DELETE ENTRY?
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

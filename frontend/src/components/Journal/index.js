@@ -15,7 +15,7 @@ const Journal = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>these are your entries by title</h1>
+      <h1 style={{ textAlign: "center" }}>UNLOCKED ENTRIES</h1>
 
       {Object.values(entries).map((entry) => (
         <NavLink key={entry.id} to={`/entries/${entry.id}`}>

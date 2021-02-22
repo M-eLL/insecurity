@@ -45,14 +45,12 @@ const EntryForm = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="TITLE YOUR ENTRY."
+            placeholder="HINT"
           />
           <p>
-            A HELPFUL TITLE THAT WILL HELP YOU REMEMBER THIS ENTRY'S UNIQUE
+            A HINT THAT WILL HELP YOU REMEMBER THIS ENTRY'S UNIQUE
             PASSPHRASE
           </p>
-          <br />
-          <br />
           <br />
           <textarea
             className="textarea"
@@ -62,16 +60,12 @@ const EntryForm = () => {
         DECRYPT IT WITHOUT THE ENTRY'S UNIQUE PASSPHRASE."
           ></textarea>
           <br />
-          <br />
-          <br />
-          <br />
-          <br />
           <input
             className="input-area"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="CHOOSE A PASSPHRASE."
+            placeholder="PASSPHRASE"
           ></input>
           <p>
             LOSING THIS PASSPHRASE MEANS THAT YOU PERMANENTLY LOSE ACCESS TO
