@@ -119,8 +119,16 @@ const Entry = () => {
                         EDITTTTTTT
                       </button>
                       {showModal && (
-                        <Modal onClose={() => setShowModal(false)}>
-                          <EditForm />
+                        <Modal
+                          onClose={() => {
+                            setShowModal(false);
+                            setShowEdit(false);
+                          }}
+                        >
+                          <EditForm
+                            setShowEdit={setShowEdit}
+                            setShowModal={setShowModal}
+                          />
                         </Modal>
                       )}
                     </>

@@ -7,7 +7,7 @@ import {
   editOneEntry,
 } from "../../store/currentEntry";
 
-const EditForm = () => {
+const EditForm = ({ setShowEdit, setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,7 +27,8 @@ const EditForm = () => {
 
   const editHandler = () => {
     dispatch(editOneEntry(entryId, title));
-    history.push("/entries");
+    setShowEdit(false);
+    setShowModal(false);
   };
 
   const deleteHandler = () => {
