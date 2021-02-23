@@ -48,8 +48,7 @@ const EntryForm = () => {
             placeholder="HINT"
           />
           <p>
-            A HINT THAT WILL HELP YOU REMEMBER THIS ENTRY'S UNIQUE
-            PASSPHRASE
+            A HINT THAT WILL HELP YOU REMEMBER THIS ENTRY'S UNIQUE PASSPHRASE
           </p>
           <br />
           <textarea
@@ -58,7 +57,7 @@ const EntryForm = () => {
             onChange={(e) => setText(e.target.value)}
             placeholder="WRITE ANYTHING YOU WANT. ONCE YOU SUBMIT YOUR ENTRY, NO ONE WILL BE ABLE TO 
         DECRYPT IT WITHOUT THE ENTRY'S UNIQUE PASSPHRASE."
-          ></textarea>
+          />
           <br />
           <input
             className="input-area"
@@ -66,7 +65,7 @@ const EntryForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="PASSPHRASE"
-          ></input>
+          />
           <p>
             LOSING THIS PASSPHRASE MEANS THAT YOU PERMANENTLY LOSE ACCESS TO
             THIS ENTRY

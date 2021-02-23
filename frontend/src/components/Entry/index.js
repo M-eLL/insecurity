@@ -13,6 +13,9 @@ import "./entrypage.css";
 import Panic from "./panic";
 import Hidden from "../Vault/hidden";
 import Navigation from "../Navigation";
+import EditModal from "../EditModal";
+import EditForm from "../EditModal/EditForm";
+import { Modal } from "../../context/Modal";
 
 const Entry = () => {
   const dispatch = useDispatch();
@@ -21,12 +24,15 @@ const Entry = () => {
   const { entryId } = useParams();
 
   const [passphrase, setPassphrase] = useState("");
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
   const [attempts, setAttempts] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -76,16 +82,6 @@ const Entry = () => {
     }
   };
 
-  const editHandler = () => {
-    dispatch(editOneEntry(entryId, title));
-    history.push("/entries");
-  };
-
-  const deleteHandler = () => {
-    dispatch(deleteOneEntry(entryId));
-    history.push("/entries");
-  };
-
   return (
     <div className={errorClass}>
       {errorClass !== "error" ? (
@@ -112,25 +108,23 @@ const Entry = () => {
                     onClick={() => {
                       const decryptedText = decryptWithAES();
                       setText(decryptedText);
+                      !!decryptedText && setShowEdit(true);
                     }}
                   >
                     decrypt message
                   </button>
-                  <br />
-                  <br />
-                  <div>
-                    <input
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      placeholder="EDIT HINT"
-                    />
-                    <button id="edit-input" onClick={editHandler}>
-                      edit
-                    </button>
-                    <button style={{ color: "red" }} onClick={deleteHandler}>
-                      PERMANENTLY DELETE ENTRY?
-                    </button>
-                  </div>
+                  {showEdit && (
+                    <>
+                      <button onClick={() => setShowModal(true)}>
+                        EDITTTTTTT
+                      </button>
+                      {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                          <EditForm />
+                        </Modal>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
