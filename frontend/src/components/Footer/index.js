@@ -15,7 +15,6 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <p style={{ fontSize: "medium" }}>CREATED BY MICHELLE YI</p>
     </div>
   );
 };
