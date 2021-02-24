@@ -29,6 +29,7 @@ const EditForm = ({ setShowEdit, setShowModal }) => {
     dispatch(editOneEntry(entryId, title));
     setShowEdit(false);
     setShowModal(false);
+    history.push("/entries");
   };
 
   const deleteHandler = () => {
