@@ -2,9 +2,28 @@
   text-align: center;
   margin: 15px auto;
   padding: 10px;
+  width: 200px;
+  text-decoration: none;
+  list-style: none;
+  z-index: -1;
 }
 
-#entries-list #single-entry a {
+#journal-entries {
+  text-align: center;
+  margin: 15px auto;
+  /* padding: 10px; */
+  width: 200px;
+  z-index: -1;
+}
+#single-entry {
+  text-align: center;
+  margin: 15px auto;
+  /* padding: 10px; */
+  width: 200px;
+  z-index: -1;
+}
+
+#entries-list #single-entry #journal-entries {
   text-align: center;
   margin: 10px auto;
   padding: 10px;
@@ -17,9 +36,10 @@
   font-weight: lighter;
   color: rgb(255, 0, 212);
   transition: 0.5s;
+  z-index: -1;
 }
 
-#entries-list #single-entry a:before {
+#entries-list #single-entry #journal-entries:before {
   text-align: center;
   margin: 10px auto;
   padding: 5px;
@@ -33,37 +53,29 @@
   z-index: -1;
 }
 
-#entries-list #single-entry a:hover:before {
+#entries-list #single-entry #journal-entries:hover:before {
   transform: scale(1.2);
   box-shadow: 0 0 15px cyan;
 }
 
-#entries-list #single-entry a:hover {
+#entries-list #single-entry #journal-entries:hover {
   color: #ffa502;
-  filter: invert(80%);
-  font-weight: normal;
+  filter: invert(100%);
 }
 
-/* .secret {
-  animation: glow 800ms ease-out infinite alternate;
-  -webkit-animation: glow 800ms ease-out infinite alternate;
-  background: #222922;
-  background: linear-gradient(#333933, #222922);
-  border-color: #393;
-  box-shadow: 0 0 5px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.1),
-    0 2px 0 #000;
-  color: #efe;
-  outline: none;
+#journal-container {
+  background-image: url(./eye.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
-@keyframes glow {
-  0% {
-    border-color: #393;
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.2), inset 0 0 5px rgba(0, 255, 0, 0.1),
-      0 2px 0 #000;
-  }
-  100% {
-    border-color: #6f6;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6),
-      inset 0 0 10px rgba(0, 255, 0, 0.4), 0 2px 0 #000;
-  }
-} */
+#vault-container {
+  background-image: url(./noeye.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 100vw;
+  height: 100vh;
+}
