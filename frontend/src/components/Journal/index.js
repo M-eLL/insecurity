@@ -14,17 +14,20 @@ const Journal = () => {
   }, [dispatch]);
 
   return (
-    <div id="journal-container">
-      <h1 style={{ textAlign: "center" }}>UNLOCKED ENTRIES</h1>
-      <div></div>
-      {Object.values(entries).map((entry) => (
-        <Link id="entries-list" key={entry.id} to={`/entries/${entry.id}`}>
-          <div id="single-entry">
-            <p id="journal-entries">{entry.title}</p>
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      {entries && (
+        <div id="journal-container">
+          <h1 style={{ textAlign: "center" }}>UNLOCKED ENTRIES</h1>
+          {Object.values(entries).map((entry) => (
+            <Link id="entries-list" key={entry.id} to={`/entries/${entry.id}`}>
+              <div id="single-entry">
+                <p id="journal-entries">{entry.title}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
