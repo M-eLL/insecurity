@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getEntries } from "../../store/entries";
 import "../Journal/journal.css";
 
@@ -14,16 +14,15 @@ const Vault = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div id="vault-container">
       <h1 style={{ textAlign: "center" }}>LOCKED SUPER SECRET ENTRIES</h1>
+      <div></div>
       {Object.values(entries).map((entry) => (
-        <NavLink key={entry.id} to={`/entries/${entry.id}`}>
-          <div id="entries-list" aria-hidden="true">
-            <div id="single-entry" aria-hidden="true">
-              <a>{entry.title}</a>
-            </div>
+        <Link id="entries-list" key={entry.id} to={`/entries/${entry.id}`}>
+          <div id="single-entry">
+            <p id="journal-entries">{entry.title}</p>
           </div>
-        </NavLink>
+        </Link>
       ))}
     </div>
   );

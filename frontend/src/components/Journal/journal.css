@@ -60,12 +60,22 @@
 
 #entries-list #single-entry #journal-entries:hover {
   color: #ffa502;
-  filter: invert(80%);
+  filter: invert(100%);
 }
 
 #journal-container {
   background-image: url(./eye.png);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100vw;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+#vault-container {
+  background-image: url(./noeye.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 100vw;
+  height: 100vh;
 }
