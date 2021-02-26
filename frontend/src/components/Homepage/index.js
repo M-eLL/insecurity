@@ -66,7 +66,7 @@ const Homepage = () => {
               </Link>
             </>
           )}
-          {user && (
+          {!!user && (
             <div>
               <h4 id="logo-font">{result}</h4>
               <Link to={`/entries/new`}>

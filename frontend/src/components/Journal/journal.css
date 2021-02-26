@@ -11,14 +11,12 @@
 #journal-entries {
   text-align: center;
   margin: 15px auto;
-  /* padding: 10px; */
   width: 200px;
   z-index: -1;
 }
 #single-entry {
   text-align: center;
   margin: 15px auto;
-  /* padding: 10px; */
   width: 200px;
   z-index: -1;
 }

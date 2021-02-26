@@ -9,9 +9,20 @@
 }
 
 .entry-text {
+  overflow-wrap: break-word; 
   margin: 20px;
   padding: 1em;
-  border: 1px solid rgb(174, 102, 102);
+  border: 1px solid rgb(255, 166, 0);
+  border-radius: 5px;
+  box-shadow: 2px 3px 3px 1px rgb(81, 21, 21), 1px 0px 10px 5px rgb(81, 21, 21);
+  text-transform: uppercase;
+}
+
+.decrypt-button {
+  min-width: 250px;
+  margin: 20px;
+  padding: 1em;
+  border: 1px solid orange;
   border-radius: 5px;
   box-shadow: 2px 3px 3px 1px rgb(81, 21, 21), 1px 0px 10px 5px rgb(81, 21, 21);
   text-transform: uppercase;
