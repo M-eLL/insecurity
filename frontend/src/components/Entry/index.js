@@ -13,7 +13,6 @@ import "./entrypage.css";
 import Panic from "./panic";
 import Hidden from "../Vault/hidden";
 import Navigation from "../Navigation";
-import EditModal from "../EditModal";
 import EditForm from "../EditModal/EditForm";
 import { Modal } from "../../context/Modal";
 

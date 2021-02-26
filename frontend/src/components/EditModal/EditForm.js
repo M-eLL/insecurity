@@ -6,6 +6,7 @@ import {
   deleteOneEntry,
   editOneEntry,
 } from "../../store/currentEntry";
+import "./edit.css";
 
 const EditForm = ({ setShowEdit, setShowModal }) => {
   const dispatch = useDispatch();
@@ -38,23 +39,33 @@ const EditForm = ({ setShowEdit, setShowModal }) => {
   };
 
   return (
-    <div>
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder={currEntry.title}
-      />
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder={currEntry.text}
-      />
-      <button id="edit-input" onClick={editHandler}>
-        edit
-      </button>
-      <button style={{ color: "red" }} onClick={deleteHandler}>
-        PERMANENTLY DELETE ENTRY?
-      </button>
+    <div className="edit-wrapper">
+      <div className="edit-content">
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder={currEntry.title}
+        />
+      </div>
+      <div>
+        <textarea
+          className="edit-text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder={currEntry.text}
+        />
+      </div>
+      <div className="edit-content">
+        <button id="edit-input" onClick={editHandler}>
+          edit
+        </button>
+      </div>
+      <div>
+        <button className="delete-button" onClick={deleteHandler}>
+          <i class="far fa-trash-alt"></i> DELETE{" "}
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
     </div>
   );
 };

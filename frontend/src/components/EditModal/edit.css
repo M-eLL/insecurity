@@ -1,0 +1,28 @@
+.edit-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ffff8a;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0 0 5px #ffff8a;
+}
+
+.edit-text {
+  margin: 1em;
+  min-height: 10em;
+  min-width: 20em;
+  border: 1px solid #ffff8a8e;
+  border-radius: 5px;
+}
+
+.delete-button {
+  margin-top: 4em;
+  border: 1px solid rgba(255, 0, 0, 0.479);
+  padding: 3px;
+  font-variant-caps: small-caps;
+  border-radius: 3px;
+  color: red;
+}
