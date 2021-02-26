@@ -103,7 +103,7 @@ const Entry = () => {
                   </p>
                   <br />
                   <button
-                    className=""
+                    className="decrypt-button"
                     onClick={() => {
                       const decryptedText = decryptWithAES();
                       setText(decryptedText);

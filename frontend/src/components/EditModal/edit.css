@@ -18,6 +18,13 @@
   border-radius: 5px;
 }
 
+.edit-button {
+  border: 1px solid #ffff8aa4;
+  box-shadow: 0 0 2px #ffff8a;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
 .delete-button {
   margin-top: 4em;
   border: 1px solid rgba(255, 0, 0, 0.479);

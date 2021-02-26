@@ -55,15 +55,14 @@ const EditForm = ({ setShowEdit, setShowModal }) => {
           placeholder={currEntry.text}
         />
       </div>
-      <div className="edit-content">
-        <button id="edit-input" onClick={editHandler}>
+      <div>
+        <button className="edit-button" onClick={editHandler}>
           edit
         </button>
       </div>
       <div>
         <button className="delete-button" onClick={deleteHandler}>
-          <i class="far fa-trash-alt"></i> DELETE{" "}
-          <i class="far fa-trash-alt"></i>
+          DELETE
         </button>
       </div>
     </div>
