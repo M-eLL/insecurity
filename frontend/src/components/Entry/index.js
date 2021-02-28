@@ -1,11 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  getOneEntry,
-  deleteOneEntry,
-  editOneEntry,
-} from "../../store/currentEntry";
+import { getOneEntry } from "../../store/currentEntry";
 import { lockEntry } from "../../store/entries";
 import * as sessionActions from "../../store/session";
 import CryptoJS from "crypto-js";
@@ -23,7 +19,6 @@ const Entry = () => {
   const { entryId } = useParams();
 
   const [passphrase, setPassphrase] = useState("");
-  // const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState(3);
   const [errorClass, setErrorClass] = useState("entry-page");
