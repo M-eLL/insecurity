@@ -108,7 +108,7 @@ const Entry = () => {
                     decrypt message
                   </button>
                   {showEdit && (
-                    <>
+                    <div>
                       <button onClick={() => setShowModal(true)}>
                         EDITTTTTTT
                       </button>
@@ -125,7 +125,7 @@ const Entry = () => {
                           />
                         </Modal>
                       )}
-                    </>
+                    </div>
                   )}
                 </div>
               </div>

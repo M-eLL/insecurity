@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import { lockEntry } from "../../store/entries";
+// import { lockEntry } from "../../store/entries";
 import "./entrypage.css";
 
 const Panic = () => {
@@ -13,7 +13,7 @@ const Panic = () => {
   const [attempts, setAttempts] = useState(0);
   const [errorClass, setErrorClass] = useState("entry-page");
 
-  const { entryId } = useParams();
+  // const { entryId } = useParams();
 
   const user = useSelector((state) => state.session.user);
   const currEntry = useSelector((state) => state.currentEntry);
@@ -36,7 +36,6 @@ const Panic = () => {
     );
     try {
       if (res.data.result === true) {
-        // dispatch(lockEntry(entryId));
         setError(3);
         setAttempts(0);
         history.push("/vault");
