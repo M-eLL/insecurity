@@ -57,7 +57,7 @@ const EditForm = ({ setShowEdit, setShowModal }) => {
       </div>
       <div>
         <button className="edit-button" onClick={editHandler}>
-          edit
+          EDIT
         </button>
       </div>
       <div>
