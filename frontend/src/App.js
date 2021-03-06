@@ -8,7 +8,6 @@ import EntryForm from "./components/EntryForm";
 import Entry from "./components/Entry";
 import Footer from "./components/Footer";
 import Vault from "./components/Vault";
-// import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
@@ -23,9 +22,6 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
-          {/* <Route path="/login" >
-            <LoginFormPage />
-          </Route> */}
           <Route exact path="/">
             <Navigation isLoaded={isLoaded} />
             <Homepage />

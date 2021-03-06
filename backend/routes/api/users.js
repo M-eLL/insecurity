@@ -134,26 +134,26 @@ router.put(
 );
 
 // // edit an entry
-router.put(
-  "/entries/:entryId",
-  restoreUser,
-  asyncHandler(async (req, res) => {
-    const { text, title, encryption_key } = req.body;
-    console.log(req.body);
-    const encryptedEntry = (text) => {
-      const passphrase = "persephone";
-      return CryptoJS.AES.encrypt(text, encryption_key).toString();
-    };
-    const encryptedText = encryptedEntry(text);
-    const entry = await Entry.update({
-      title,
-      userId: req.params.id,
-      text: encryptedText,
-    });
+// router.put(
+//   "/entries/:entryId",
+//   restoreUser,
+//   asyncHandler(async (req, res) => {
+//     const { text, title, encryption_key } = req.body;
+//     console.log(req.body);
+//     const encryptedEntry = (text) => {
+//       const passphrase = "persephone";
+//       return CryptoJS.AES.encrypt(text, encryption_key).toString();
+//     };
+//     const encryptedText = encryptedEntry(text);
+//     const entry = await Entry.update({
+//       title,
+//       userId: req.params.id,
+//       text: encryptedText,
+//     });
 
-    return res.json({ entry });
-  })
-);
+//     return res.json({ entry });
+//   })
+// );
 
 
 module.exports = router;
