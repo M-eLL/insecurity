@@ -15,9 +15,10 @@ const EditForm = ({ setShowEdit, setShowModal, passphrase }) => {
   const [text, setText] = useState("");
 
   const currEntry = useSelector((state) => state.currentEntry);
-
   useEffect(() => {
-    setText(currEntry.text);
+    let decryptedText = CryptoJS.AES.decrypt(currEntry.text, passphrase);
+    setTitle(currEntry.title);
+    setText(decryptedText.toString(CryptoJS.enc.Utf8));
   }, [currEntry]);
 
   useEffect(() => {
