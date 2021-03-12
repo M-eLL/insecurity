@@ -41,10 +41,10 @@ Additionally, the user is protected with a bcryptjs hashing function on the back
 
 Another layer of protection is provided with a tailored algorithm to determine the duration of decrypted rendering of an entry based on the character count of each individual entry and the average human reading speed.
 
-<br/>
-![Alt Text](https://media.giphy.com/media/NFA8SCyu8QybvFvgpf/giphy.gif)
-![Alt Text](https://media.giphy.com/media/gNP20j8FtUSQNf0tVV/giphy.gif)
-<br/>
+
+![Alt Text](https://media.giphy.com/media/NFA8SCyu8QybvFvgpf/giphy.gif)<br/>
+![Alt Text](https://media.giphy.com/media/gNP20j8FtUSQNf0tVV/giphy.gif)<br/>
+
 
 After three decryption attempts, "panic mode" will be triggered and the user will be forced to enter their session password.<br/>Three wrong attempts and the user is signed out and the entry is moved to the vault.<br/>Entries in th vault are only recoverable using the user's recovery session password. <br/>Three wrong recovery attempts results in permanent deletion of the entry.
 
