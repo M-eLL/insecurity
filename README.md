@@ -17,7 +17,7 @@ In.security is an encryption-protected journaling application. It serves to prov
 * Run npm start in both frontend and backend folders to start the server
 
 ### Tools
-In.security uses various technologies to create a dynamic and fun web application. The front end utilizes React and Redux while the back end relies on Express, Sequelize and PostgreSQL.
+In.security uses various technologies to create a dynamic and unique web application. The front end is built with React and Redux and the back end is built with Express, Sequelize and PostgreSQL.
 
 <a href="https://www.npmjs.com/package/crypto-js"><img alt="crypto-js" src="https://img.shields.io/badge/-CryptoJS-brightgreen" /></a>
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=JavaScript&logoColor=333333" /></a>
