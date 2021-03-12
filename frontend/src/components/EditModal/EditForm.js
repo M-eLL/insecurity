@@ -1,14 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  getOneEntry,
-  deleteOneEntry,
-  editOneEntry,
-} from "../../store/currentEntry";
+import { getOneEntry, editOneEntry } from "../../store/currentEntry";
+import { deleteOneEntry } from "../../store/entries";
+import CryptoJS from "crypto-js";
 import "./edit.css";
 
-const EditForm = ({ setShowEdit, setShowModal }) => {
+const EditForm = ({ setShowEdit, setShowModal, passphrase }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,7 +25,9 @@ const EditForm = ({ setShowEdit, setShowModal }) => {
   }, [entryId, dispatch]);
 
   const editHandler = () => {
-    dispatch(editOneEntry(entryId, title));
+    let encryptedText = CryptoJS.AES.encrypt(text, passphrase).toString();
+
+    dispatch(editOneEntry(entryId, title, encryptedText));
     setShowEdit(false);
     setShowModal(false);
     history.push("/entries");

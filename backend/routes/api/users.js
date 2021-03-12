@@ -102,9 +102,8 @@ router.post(
   restoreUser,
   asyncHandler(async (req, res) => {
     const { text, title, encryption_key } = req.body;
-    console.log(req.body);
     const encryptedEntry = (text) => {
-      const passphrase = "persephone";
+      // const passphrase = "persephone";
       return CryptoJS.AES.encrypt(text, encryption_key).toString();
     };
     const encryptedText = encryptedEntry(text);
@@ -124,11 +123,11 @@ router.put(
   restoreUser,
   asyncHandler(async (req, res) => {
     const entryId = req.params.entryId;
-    const { title } = req.body;
+    const { title, text } = req.body;
 
     const entry = await Entry.findByPk(parseInt(entryId));
 
-    await entry.update({ title: title });
+    await entry.update({ title: title, text: text });
     return res.json({ entry });
   })
 );
@@ -141,7 +140,6 @@ router.put(
 //     const { text, title, encryption_key } = req.body;
 //     console.log(req.body);
 //     const encryptedEntry = (text) => {
-//       const passphrase = "persephone";
 //       return CryptoJS.AES.encrypt(text, encryption_key).toString();
 //     };
 //     const encryptedText = encryptedEntry(text);
@@ -154,6 +152,5 @@ router.put(
 //     return res.json({ entry });
 //   })
 // );
-
 
 module.exports = router;

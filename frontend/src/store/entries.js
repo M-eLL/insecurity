@@ -4,6 +4,7 @@ const SET_ENTRIES = "entries/setEntries";
 const SET_ONE_ENTRY = "entries/setOneEntry";
 const ADD_ENTRY = "entries/addEntries";
 const SET_HIDDEN = "entries/hideEntry";
+const DELETE_ENTRY = "entries/deleteOneEntry";
 
 const setEntries = (payload) => ({
   type: SET_ENTRIES,
@@ -22,6 +23,19 @@ const hideEntry = (payload) => ({
   type: SET_HIDDEN,
   payload,
 });
+
+const deleteEntry = (payload) => ({
+  type: DELETE_ENTRY,
+  payload,
+});
+
+export const deleteOneEntry = (entryId) => async (dispatch) => {
+  const response = await fetch(`/api/users/entries/${entryId}`, {
+    method: "DELETE",
+  });
+  const id = response.data.entryId;
+  dispatch(deleteEntry(id));
+};
 
 export const lockEntry = (entryId) => async (dispatch) => {
   let response = await fetch(`/api/users/entries/${entryId}`, {
@@ -70,6 +84,10 @@ const reducer = (state = initState, action) => {
     case SET_HIDDEN:
       newState = { ...state };
       delete newState[action.payload.id];
+      return newState;
+    case DELETE_ENTRY:
+      newState = { ...state };
+      delete newState[action.payload];
       return newState;
     default:
       return state;

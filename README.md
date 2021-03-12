@@ -8,7 +8,7 @@ In.security is an encryption-protected journaling application. It serves to prov
 ### Installation
 * Clone the GitHub repository.
 * Run npm install in the base directory.
-* Use  PostgreSQL to create a database user with a password using
+* Use  PostgreSQL to create a database user with a password
 * cd into the backend directory.
 * Create a .env file with: DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_HOST, JWT_SECRET, JWT_EXPIRES_IN
 * Run npx dotenv sequelize-cli db:create.

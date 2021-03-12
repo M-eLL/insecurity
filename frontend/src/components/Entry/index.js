@@ -120,6 +120,7 @@ const Entry = () => {
                           }}
                         >
                           <EditForm
+                            passphrase={passphrase}
                             setShowEdit={setShowEdit}
                             setShowModal={setShowModal}
                           />
