@@ -49,3 +49,6 @@ Another layer of protection is provided with a tailored algorithm to determine t
 After three decryption attempts, "panic mode" will be triggered and the user will be forced to enter their session password.<br/>Three wrong attempts and the user is signed out and the entry is moved to the vault.<br/>Entries in th vault are only recoverable using the user's recovery session password. <br/>Three wrong recovery attempts results in permanent deletion of the entry.
 
 ![Alt Text](https://media.giphy.com/media/HnR7WJzpCvomGQfGeF/giphy.gif)<br/>
+
+### Live Site
+https://insecurity-app.herokuapp.com/
