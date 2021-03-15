@@ -36,7 +36,7 @@ function LoginFormModal() {
             });
         }}
       >
-        Demo User
+        Demo Login
       </button>
     </>
   );

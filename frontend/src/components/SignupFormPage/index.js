@@ -87,7 +87,7 @@ function SignupFormPage() {
                 });
             }}
           >
-            Demo User
+            Demo Login
           </button>
           <ul>
             {errors.map((error, idx) => (
