@@ -110,7 +110,7 @@ const Entry = () => {
                   {showEdit && (
                     <div>
                       <button onClick={() => setShowModal(true)}>
-                        EDITTTTTTT
+                        EDIT ENTRY
                       </button>
                       {showModal && (
                         <Modal
